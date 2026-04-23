@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Techturia - AI &amp; The Future of Tech Skills</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            outfit: ['Outfit', 'sans-serif'],
+            mono: ['Space Mono', 'monospace']
+          },
+          colors: {
+            neon: '#00FFAA',
+            charcoal: '#0a0a0f',
+            'charcoal-light': '#12121a'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    body { font-family: 'Outfit', sans-serif; background: #0a0a0f; color: #fff; }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(0,255,170,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,170,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      position: relative;
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .orb-cyan-top {
+      width: 400px;
+      height: 400px;
+      top: -100px;
+      left: -100px;
+      background: radial-gradient(circle, rgba(0,255,170,0.15) 0%, rgba(0,255,170,0) 70%);
+      animation: pulse-orb-1 8s ease-in-out infinite;
+    }
+    .orb-blue-mid {
+      width: 350px;
+      height: 350px;
+      top: 30%;
+      right: -80px;
+      background: radial-gradient(circle, rgba(0,102,255,0.12) 0%, rgba(0,102,255,0) 70%);
+      animation: pulse-orb-2 7s ease-in-out 0.5s infinite;
+    }
+    .orb-cyan-bottom {
+      width: 320px;
+      height: 320px;
+      bottom: -100px;
+      left: 10%;
+      background: radial-gradient(circle, rgba(0,255,170,0.12) 0%, rgba(0,255,170,0) 70%);
+      animation: pulse-orb-3 9s ease-in-out 1s infinite;
+    }
+
+    @keyframes pulse-orb-1 {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 0.3; }
+    }
+    @keyframes pulse-orb-2 {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 0.15; }
+    }
+    @keyframes pulse-orb-3 {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 0.25; }
+    }
+
+    .header-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 255, 170, 0.1);
+      padding: 16px 24px;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-box {
+      width: 46px;
+      height: 46px;
+      background: #00FFAA;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 255, 170, 0.55);
+      box-shadow: 0 0 0 1px rgba(0, 255, 170, 0.45) inset, 0 0 20px rgba(0, 255, 170, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: #0a0a0f;
+      font-size: 20px;
+      font-family: 'Outfit', sans-serif;
+      overflow: hidden;
+      flex-shrink: 0;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .logo-box::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 255, 170, 0.3);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .logo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (min-width: 640px) {
+      .logo-box {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+      }
+    }
+
+    .logo-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .register-btn-header {
+      background: linear-gradient(135deg, #00FFAA 0%, #00CC88 100%);
+      color: #0a0a0f;
+      font-weight: 700;
+      border-radius: 24px;
+      padding: 12px 28px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      font-family: 'Outfit', sans-serif;
+      box-shadow: 0 0 30px rgba(0, 255, 170, 0.35);
+    }
+    .register-btn-header:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(0, 255, 170, 0.5);
+    }
+
+    .live-badge {
+      display: inline-block;
+      border: 1px solid rgba(0, 255, 170, 0.2);
+      background: rgba(0, 255, 170, 0.05);
+      border-radius: 20px;
+      padding: 8px 16px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #00FFAA;
+      margin-bottom: 32px;
+    }
+
+    .glass-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(0,255,170,0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+    .glass-card:hover {
+      border-color: rgba(0,255,170,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0,255,170,0.08);
+    }
+
+    .glow-btn {
+      background: #00FFAA;
+      color: #0a0a0f;
+      font-weight: 700;
+      border-radius: 12px;
+      padding: 16px 36px;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(0,255,170,0.3);
+      cursor: pointer;
+      border: none;
+      font-family: 'Outfit', sans-serif;
+    }
+    .glow-btn:hover {
+      background: #33ffc6;
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(0,255,170,0.5);
+    }
+
+    .social-icon {
+      color: rgba(255,255,255,0.5);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .social-icon:hover { color: #00FFAA; transform: scale(1.15); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up {
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+    .fade-up-d1 { animation-delay: 0.1s; }
+    .fade-up-d2 { animation-delay: 0.25s; }
+    .fade-up-d3 { animation-delay: 0.4s; }
+    .fade-up-d4 { animation-delay: 0.55s; }
+    .fade-up-d5 { animation-delay: 0.7s; }
+
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #00FFAA;
+      margin-bottom: 0.75rem;
+    }
+
+    .neon-text { color: #00FFAA; }
+
+    .circuit-line {
+      stroke: #00FFAA;
+      stroke-width: 1.5;
+      fill: none;
+      opacity: 0.6;
+    }
+
+    .app-wrapper {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .app-wrapper > section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .app-wrapper > footer {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div class="app-wrapper grid-bg">
+   <!-- Floating Orbs -->
+   <div class="orb orb-cyan-top"></div>
+   <div class="orb orb-blue-mid"></div>
+   <div class="orb orb-cyan-bottom"></div><!-- Header Navigation -->
+   <header class="header-navbar">
+    <div class="header-content">
+     <div class="logo-section">
+      <div class="logo-box">
+         <img id="brand-logo-img" alt="Techturia logo" style="display:none;">
+         <span id="brand-logo-fallback">T</span>
+      </div>
+      <div class="logo-text">
+       Techturia
+      </div>
+    </div><a id="header-register-btn" href="#registration-form-section" class="register-btn-header" style="display:inline-block;text-decoration:none;">Register Free</a>
+    </div>
+   </header><!-- HERO -->
+   <section class="w-full px-6 pt-16 pb-20 flex flex-col items-center text-center max-w-4xl mx-auto">
+    <div class="fade-up fade-up-d1 mb-6">
+     <svg width="100" height="100" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><!-- Brain outline --> <ellipse cx="38" cy="48" rx="22" ry="28" stroke="#00FFAA" stroke-width="1.8" fill="none" opacity="0.7" /> <ellipse cx="62" cy="48" rx="22" ry="28" stroke="#00FFAA" stroke-width="1.8" fill="none" opacity="0.7" /> <!-- Circuit nodes --> <circle cx="35" cy="35" r="2.5" fill="#00FFAA" /> <circle cx="50" cy="28" r="2.5" fill="#00FFAA" /> <circle cx="65" cy="35" r="2.5" fill="#00FFAA" /> <circle cx="30" cy="50" r="2.5" fill="#00FFAA" /> <circle cx="50" cy="50" r="3" fill="#00FFAA" /> <circle cx="70" cy="50" r="2.5" fill="#00FFAA" /> <circle cx="38" cy="65" r="2.5" fill="#00FFAA" /> <circle cx="62" cy="65" r="2.5" fill="#00FFAA" /> <!-- Circuit lines --> <line x1="35" y1="35" x2="50" y2="28" class="circuit-line" /> <line x1="50" y1="28" x2="65" y2="35" class="circuit-line" /> <line x1="30" y1="50" x2="50" y2="50" class="circuit-line" /> <line x1="50" y1="50" x2="70" y2="50" class="circuit-line" /> <line x1="35" y1="35" x2="30" y2="50" class="circuit-line" /> <line x1="65" y1="35" x2="70" y2="50" class="circuit-line" /> <line x1="30" y1="50" x2="38" y2="65" class="circuit-line" /> <line x1="70" y1="50" x2="62" y2="65" class="circuit-line" /> <line x1="50" y1="50" x2="38" y2="65" class="circuit-line" /> <line x1="50" y1="50" x2="62" y2="65" class="circuit-line" /> <!-- Glow --> <circle cx="50" cy="50" r="3" fill="#00FFAA" opacity="0.3">
+       <animate attributename="r" values="3;8;3" dur="3s" repeatcount="indefinite" />
+       <animate attributename="opacity" values="0.3;0.08;0.3" dur="3s" repeatcount="indefinite" />
+      </circle>
+     </svg>
+    </div><span class="live-badge">🎯 Live Event - Free Access</span>
+    <h1 id="hero-headline" class="fade-up fade-up-d2 text-4xl sm:text-5xl md:text-6xl font-900 leading-tight mb-6" style="font-weight:900;">AI &amp; The Future of<br><span class="neon-text">Tech Skills</span></h1>
+    <p id="hero-subheading" class="fade-up fade-up-d3 text-base sm:text-lg text-gray-400 max-w-2xl mb-10 leading-relaxed">Is learning tech still worth it in today's AI-driven world? Discover how to stay relevant and build real skills faster using AI.</p><a href="#registration-form-section" id="hero-cta" class="fade-up fade-up-d4 glow-btn" style="display:inline-block;text-decoration:none;">🚀 Register for Free</a>
+   </section><!-- ABOUT -->
+   <section class="w-full px-6 py-16 max-w-4xl mx-auto">
+    <div class="glass-card p-8 sm:p-10"><span class="section-label">About Techturia</span>
+     <h2 class="text-2xl sm:text-3xl font-bold mb-4">Empowering the Next Generation of Tech Builders</h2>
+     <p class="text-gray-400 leading-relaxed">Techturia is a community-driven platform dedicated to making tech education accessible, practical, and future-proof. We bridge the gap between traditional learning and the rapidly evolving AI landscape, helping you build skills that actually matter in the real world.</p>
+    </div>
+   </section>
+   <!-- MISSION & VISION -->
+   <section class="w-full px-6 py-16 max-w-4xl mx-auto">
+    <div class="text-center mb-10"><span class="section-label">Our Direction</span>
+     <h2 class="text-2xl sm:text-3xl font-bold">Mission &amp; Vision</h2>
+     <p class="text-gray-400 max-w-2xl mx-auto mt-3">The foundation behind everything we build at Techturia.</p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+     <div class="glass-card p-7">
+      <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(0,255,170,0.1);">
+       <i data-lucide="compass" style="width:20px;height:20px;color:#00FFAA;"></i>
+      </div>
+      <h3 class="text-lg font-bold mb-2">Vision</h3>
+      <p class="text-gray-400 text-sm leading-relaxed">To shape a future where tech education is accessible, practical, and powerful enough to help anyone thrive in an AI-driven world.</p>
+     </div>
+     <div class="glass-card p-7">
+      <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(0,255,170,0.1);">
+       <i data-lucide="target" style="width:20px;height:20px;color:#00FFAA;"></i>
+      </div>
+      <h3 class="text-lg font-bold mb-2">Mission</h3>
+      <p class="text-gray-400 text-sm leading-relaxed">To equip learners and builders with relevant, real-world skills and guided AI workflows that accelerate growth and career readiness.</p>
+     </div>
+    </div>
+   </section>
+   <!-- THE PROBLEM -->
+   <section class="w-full px-6 py-12 max-w-4xl mx-auto">
+    <div class="glass-card p-8 sm:p-10" style="border-color: rgba(255,100,100,0.15);"><span class="section-label" style="color:#ff6b6b;">About the Event</span>
+     <h2 class="text-2xl sm:text-3xl font-bold mb-4">AI Is Changing Everything — Are You Ready?</h2>
+     <p class="text-gray-400 leading-relaxed mb-4">Every day, new AI tools emerge that automate tasks developers, designers, and marketers used to do manually. The fear is real: <em class="neon-text">"Will AI take my job?"</em></p>
+     <p class="text-gray-400 leading-relaxed">But here's the truth, AI won't replace people who know how to <strong class="text-white">position themselves with relevance and evolve with the times</strong>. The real risk isn't AI itself; it's falling behind because you didn't adapt. This event is your wake-up call.</p>
+    </div>
+   </section><!-- WHAT YOU'LL LEARN -->
+   <section class="w-full px-6 py-16 max-w-4xl mx-auto">
+    <div class="text-center mb-10"><span class="section-label">What You'll Learn</span>
+     <h2 class="text-2xl sm:text-3xl font-bold">Walk Away With Real Clarity</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+     <div class="glass-card p-7">
+      <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(0,255,170,0.1);">
+       <i data-lucide="cpu" style="width:20px;height:20px;color:#00FFAA;"></i>
+      </div>
+      <h3 class="text-lg font-bold mb-2">AI &amp; Tech Careers</h3>
+      <p class="text-gray-400 text-sm leading-relaxed">How AI is transforming tech careers and which skills remain in high demand.</p>
+     </div>
+     <div class="glass-card p-7">
+      <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(0,255,170,0.1);">
+       <i data-lucide="code" style="width:20px;height:20px;color:#00FFAA;"></i>
+      </div>
+      <h3 class="text-lg font-bold mb-2">Is Coding Still Relevant?</h3>
+      <p class="text-gray-400 text-sm leading-relaxed">Whether coding skills are still valuable or if AI is replacing developers.</p>
+     </div>
+     <div class="glass-card p-7">
+      <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(0,255,170,0.1);">
+       <i data-lucide="zap" style="width:20px;height:20px;color:#00FFAA;"></i>
+      </div>
+      <h3 class="text-lg font-bold mb-2">AI-Powered Learning</h3>
+      <p class="text-gray-400 text-sm leading-relaxed">How to use AI tools to accelerate your learning and build skills faster.</p>
+     </div>
+     <div class="glass-card p-7">
+      <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(0,255,170,0.1);">
+       <i data-lucide="rocket" style="width:20px;height:20px;color:#00FFAA;"></i>
+      </div>
+      <h3 class="text-lg font-bold mb-2">The Smartest Path</h3>
+      <p class="text-gray-400 text-sm leading-relaxed">The clearest roadmap to becoming highly skilled and relevant faster.</p>
+     </div>
+    </div>
+   </section><!-- BONUS -->
+  <section class="w-full px-6 py-12 max-w-4xl mx-auto">
+    <div class="glass-card p-8 sm:p-10"><span class="section-label">Who Is This For?</span>
+     <h2 class="text-2xl sm:text-3xl font-bold mb-6">This Event Is Perfect For You If…</h2>
+     <ul class="space-y-3">
+      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" style="width:18px;height:18px;color:#00FFAA;flex-shrink:0;margin-top:3px;"></i><span>You're a beginner wondering if learning tech is still worth it</span></li>
+      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" style="width:18px;height:18px;color:#00FFAA;flex-shrink:0;margin-top:3px;"></i><span>You're a developer worried about AI replacing your job</span></li>
+      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" style="width:18px;height:18px;color:#00FFAA;flex-shrink:0;margin-top:3px;"></i><span>You want to learn how to use AI as a superpower, not a threat</span></li>
+      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" style="width:18px;height:18px;color:#00FFAA;flex-shrink:0;margin-top:3px;"></i><span>You're a student, freelancer, or career switcher in tech</span></li>
+      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" style="width:18px;height:18px;color:#00FFAA;flex-shrink:0;margin-top:3px;"></i><span>You want clarity on what skills to focus on in 2025 and beyond</span></li>
+     </ul>
+    </div>
+   </section>
+   <section class="w-full px-6 py-12 max-w-4xl mx-auto">
+    <div class="glass-card p-8 sm:p-10" style="border-color: rgba(0,255,170,0.25); background: rgba(0,255,170,0.03);"><span class="section-label">Bonus</span>
+     <h2 class="text-2xl sm:text-3xl font-bold mb-5">Early Access to Techturia Courses</h2>
+     <p class="text-gray-400 mb-6">All registered attendees get exclusive early access to our upcoming courses, including:</p>
+     <ul class="space-y-3">
+      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check-circle" style="width:20px;height:20px;color:#00FFAA;flex-shrink:0;margin-top:2px;"></i><span>AI Agents: for Content creation, Data Analysis and web development</span></li>
+      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check-circle" style="width:20px;height:20px;color:#00FFAA;flex-shrink:0;margin-top:2px;"></i><span>Programming Fundamentals with focus on AI Integration</span></li>
+     </ul>
+    </div>
+     </section>
+     <section class="w-full px-6 py-16 max-w-4xl mx-auto">
+      <div class="text-center mb-10"><span class="section-label">Event Speakers</span>
+       <h2 class="text-2xl sm:text-3xl font-bold">Meet Your Speakers</h2>
+       <p class="text-gray-400 max-w-2xl mx-auto mt-3">Two experienced builders sharing practical strategies to stay relevant and win in an AI-first world.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+       <article class="glass-card p-5 sm:p-6 overflow-hidden">
+        <img id="speaker-1-img" src="https://drive.google.com/uc?export=view&id=1ynNwMAKEaTXS-lWS5-1Q9eaHW4hnng0F" data-drive-id="1ynNwMAKEaTXS-lWS5-1Q9eaHW4hnng0F" referrerpolicy="no-referrer" alt="Ridwan Suleiman Adejumo portrait" class="w-full aspect-square object-cover rounded-xl mb-5 border border-neon/20">
+        <div class="section-label mb-2"></div>
+        <h3 class="text-xl font-bold mb-1">Ridwan Suleiman Adejumo</h3>
+        <p class="text-sm text-gray-500 mb-3">Data Scientist | Technical Writer | Founder, LearnData</p>
+        <p class="text-gray-400 text-sm leading-relaxed">Ridwan helps organizations turn complex data into actionable insights through analytics, machine learning, and digital strategy. As a Udemy instructor, he has taught thousands of learners globally with practical, accessible courses, and through technical writing, he simplifies advanced concepts for both technical and non-technical audiences.</p>
+       </article>
+      <article class="glass-card p-5 sm:p-6 overflow-hidden">
+       <img id="speaker-2-img" src="https://drive.google.com/uc?export=view&id=1vXePXniE314hfdLZxEHh9jq7ZJvgJHgJ" data-drive-id="1vXePXniE314hfdLZxEHh9jq7ZJvgJHgJ" referrerpolicy="no-referrer" alt="Speaker 2 portrait" class="w-full aspect-square object-cover rounded-xl mb-5 border border-neon/20">
+        <div class="section-label mb-2"></div>
+        <h3 class="text-xl font-bold mb-1">Surajju Nuhu</h3>
+        <p class="text-sm text-gray-500 mb-3">AI/ML Researcher | Data Scientist | Computer Engineer</p>
+        <p class="text-gray-400 text-sm leading-relaxed">Speaker Two focuses on helping professionals future-proof their careers, master high-impact skills, and stand out in today&rsquo;s fast-changing tech landscape.</p>
+       </article>
+      </div>
+     </section>
+   <section id="registration-form-section" class="w-full px-6 py-16 max-w-4xl mx-auto">
+    <div class="text-center mb-10"><span class="section-label">Registration</span>
+     <h2 class="text-2xl sm:text-3xl font-bold">Register for Free</h2>
+     <p class="text-gray-400 max-w-2xl mx-auto mt-3">Fill this quick form to secure your spot. After successful registration, you will be redirected to our WhatsApp group.</p>
+    </div>
+    <div class="glass-card p-8 sm:p-10">
+     <form id="registration-form" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="sm:col-span-2">
+       <label for="reg-full-name" class="block text-xs text-gray-400 mb-2 font-mono uppercase tracking-wider">Full Name</label>
+       <input id="reg-full-name" name="full_name" type="text" required placeholder="Enter your full name" class="w-full rounded-lg border border-gray-700 bg-charcoal-light px-3 py-2 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-neon">
+      </div>
+      <div>
+       <label for="reg-phone" class="block text-xs text-gray-400 mb-2 font-mono uppercase tracking-wider">Phone Number</label>
+       <input id="reg-phone" name="phone_number" type="tel" required placeholder="e.g. +2348012345678" class="w-full rounded-lg border border-gray-700 bg-charcoal-light px-3 py-2 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-neon">
+      </div>
+      <div>
+       <label for="reg-email" class="block text-xs text-gray-400 mb-2 font-mono uppercase tracking-wider">Email Address</label>
+       <input id="reg-email" name="email_address" type="email" required placeholder="Enter your email" class="w-full rounded-lg border border-gray-700 bg-charcoal-light px-3 py-2 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-neon">
+      </div>
+      <div>
+       <label for="reg-age-group" class="block text-xs text-gray-400 mb-2 font-mono uppercase tracking-wider">Age Group</label>
+       <select id="reg-age-group" name="age_group" required class="w-full rounded-lg border border-gray-700 bg-charcoal-light px-3 py-2 text-sm text-white focus:outline-none focus:border-neon">
+        <option value="" disabled selected>Select age group</option>
+        <option>Under 18</option>
+        <option>18-24</option>
+        <option>25-34</option>
+        <option>35-44</option>
+        <option>45-54</option>
+        <option>55+</option>
+       </select>
+      </div>
+      <div>
+       <label for="reg-education" class="block text-xs text-gray-400 mb-2 font-mono uppercase tracking-wider">Level of Education</label>
+       <select id="reg-education" name="education_level" required class="w-full rounded-lg border border-gray-700 bg-charcoal-light px-3 py-2 text-sm text-white focus:outline-none focus:border-neon">
+        <option value="" disabled selected>Select education level</option>
+        <option>Secondary School</option>
+        <option>OND/NCE</option>
+        <option>HND/BSc</option>
+        <option>MSc</option>
+        <option>PhD</option>
+        <option>Other</option>
+       </select>
+      </div>
+      <div>
+       <label for="reg-location" class="block text-xs text-gray-400 mb-2 font-mono uppercase tracking-wider">Location</label>
+       <input id="reg-location" name="location" type="text" required placeholder="City, State/Country" class="w-full rounded-lg border border-gray-700 bg-charcoal-light px-3 py-2 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-neon">
+      </div>
+      <div>
+       <label for="reg-interest" class="block text-xs text-gray-400 mb-2 font-mono uppercase tracking-wider">Area of Interest</label>
+       <select id="reg-interest" name="area_of_interest" required class="w-full rounded-lg border border-gray-700 bg-charcoal-light px-3 py-2 text-sm text-white focus:outline-none focus:border-neon">
+        <option value="" disabled selected>Select area of interest</option>
+        <option>Frontend Development</option>
+        <option>Backend Development</option>
+        <option>Full-Stack Development</option>
+        <option>Data Science</option>
+        <option>Machine Learning / AI</option>
+        <option>Cybersecurity</option>
+        <option>Cloud / DevOps</option>
+        <option>UI/UX Design</option>
+        <option>Product Management</option>
+        <option>Technical Writing</option>
+        <option>Blockchain / Web3</option>
+        <option>Other</option>
+       </select>
+      </div>
+      <div>
+       <label for="reg-proficiency" class="block text-xs text-gray-400 mb-2 font-mono uppercase tracking-wider">Tech Proficiency Level</label>
+       <select id="reg-proficiency" name="tech_proficiency" required class="w-full rounded-lg border border-gray-700 bg-charcoal-light px-3 py-2 text-sm text-white focus:outline-none focus:border-neon">
+        <option value="" disabled selected>Select proficiency level</option>
+        <option>Beginner</option>
+        <option>Intermediate</option>
+        <option>Advanced</option>
+        <option>Professional</option>
+       </select>
+      </div>
+      <div>
+       <label for="reg-referral" class="block text-xs text-gray-400 mb-2 font-mono uppercase tracking-wider">How Did You Hear About Us?</label>
+       <select id="reg-referral" name="referral_source" required class="w-full rounded-lg border border-gray-700 bg-charcoal-light px-3 py-2 text-sm text-white focus:outline-none focus:border-neon">
+        <option value="" disabled selected>Select source</option>
+        <option>WhatsApp</option>
+        <option>Instagram</option>
+        <option>X (Twitter)</option>
+        <option>LinkedIn</option>
+        <option>Friend/Referral</option>
+        <option>Email Newsletter</option>
+        <option>Google Search</option>
+        <option>Community Group</option>
+        <option>Other</option>
+       </select>
+      </div>
+      <div class="sm:col-span-2 pt-2">
+       <button type="submit" class="w-full rounded-lg bg-neon text-charcoal font-semibold py-3 text-sm hover:opacity-90 transition-opacity">Submit Registration</button>
+      </div>
+      <p id="registration-form-status" class="sm:col-span-2 text-xs text-gray-500"></p>
+     </form>
+    </div>
+   </section>
+   <!-- EVENT DETAILS -->
+   <section class="w-full px-6 py-16 max-w-4xl mx-auto">
+    <div class="text-center mb-10"><span class="section-label">Event Details</span>
+     <h2 class="text-2xl sm:text-3xl font-bold">Save the Date</h2>
+    </div>
+    <div class="glass-card p-8 sm:p-10 max-w-lg mx-auto">
+     <div class="space-y-5">
+      <div class="flex items-center gap-4"><i data-lucide="calendar" style="width:24px;height:24px;color:#00FFAA;flex-shrink:0;"></i>
+       <div>
+        <div class="text-xs text-gray-500 font-mono uppercase tracking-wider">
+         Date
+        </div>
+        <div id="event-date" class="text-lg font-semibold">
+         9th May, 2026
+        </div>
+       </div>
+      </div>
+      <div class="flex items-center gap-4"><i data-lucide="clock" style="width:24px;height:24px;color:#00FFAA;flex-shrink:0;"></i>
+       <div>
+        <div class="text-xs text-gray-500 font-mono uppercase tracking-wider">
+         Time
+        </div>
+        <div id="event-time" class="text-lg font-semibold">
+         10:00 AM WAT
+        </div>
+       </div>
+      </div>
+      <div class="flex items-center gap-4"><i data-lucide="map-pin" style="width:24px;height:24px;color:#00FFAA;flex-shrink:0;"></i>
+       <div>
+        <div class="text-xs text-gray-500 font-mono uppercase tracking-wider">
+         Location
+        </div>
+        <div id="event-location" class="text-lg font-semibold">
+         Virtual (Google Meet)
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- WHO IS THIS FOR -->
+    <!-- FINAL CTA -->
+   <section class="w-full px-6 py-20 max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl sm:text-4xl font-900 mb-4" style="font-weight:900;">Don't Just Watch AI<br>
+      Change the World — <span class="neon-text">Be Part of It</span></h2>
+    <p class="text-gray-400 max-w-xl mx-auto mb-8 leading-relaxed">This free event could be the turning point in your tech journey. Spots are limited — reserve yours now.</p><a href="#registration-form-section" id="final-cta" class="glow-btn" style="display:inline-block;text-decoration:none;">🚀 Register for Free</a>
+   </section><!-- FOOTER -->
+   <footer class="w-full px-6 py-14 border-t border-gray-800/50">
+    <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-10"><!-- Get In Touch -->
+     <div>
+      <h4 class="font-bold text-sm uppercase tracking-wider mb-4 neon-text">Get In Touch</h4>
+        <div class="space-y-3">
+         <form id="footer-contact-form" class="space-y-3">
+          <input id="contact-form-email" type="email" required placeholder="Your email" class="w-full rounded-lg border border-gray-700 bg-charcoal-light px-3 py-2 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-neon">
+          <textarea id="contact-form-message" required rows="3" placeholder="Your message" class="w-full rounded-lg border border-gray-700 bg-charcoal-light px-3 py-2 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-neon"></textarea>
+          <button type="submit" class="w-full rounded-lg bg-neon text-charcoal font-semibold py-2 text-sm hover:opacity-90 transition-opacity">Send Message</button>
+            <p id="contact-form-status" class="text-xs text-gray-500"></p>
+          <p id="contact-form-recipient" class="text-xs text-gray-500"></p>
+         </form>
+         <a id="footer-phone-link" href="tel:+2348087532090" class="flex items-center gap-3 text-gray-400 hover:text-neon transition-colors text-sm"> <i data-lucide="phone" style="width:16px;height:16px;"></i> <span id="footer-phone">+2348087532090</span> </a>
+      </div>
+     </div><!-- Follow Us -->
+     <div>
+      <h4 class="font-bold text-sm uppercase tracking-wider mb-4 neon-text">Follow Us</h4>
+      <div class="flex gap-4"><a href="https://x.com/techturia_" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-lucide="twitter" style="width:22px;height:22px;"></i></a> <a href="https://www.instagram.com/techturiaofficial?igsh=MTNqZ3VkdWx5cHAxYQ==" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-lucide="instagram" style="width:22px;height:22px;"></i></a> <a href="https://www.linkedin.com/company/techturia" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-lucide="linkedin" style="width:22px;height:22px;"></i></a> <a href="https://chat.whatsapp.com/KqY1Ylt7l4w7JDxzv5jq1H?mode=gi_t" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-lucide="message-circle" style="width:22px;height:22px;"></i></a>
+      </div>
+     </div><!-- Links -->
+     <div>
+      <h4 class="font-bold text-sm uppercase tracking-wider mb-4 neon-text">Links</h4>
+      <div class="space-y-3"><a href="https://techturia.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-gray-400 hover:text-neon transition-colors text-sm"> <i data-lucide="globe" style="width:16px;height:16px;"></i> <span>techturia.com</span> </a>
+      </div>
+     </div>
+    </div>
+    <div class="max-w-4xl mx-auto mt-10 pt-6 border-t border-gray-800/30 text-center text-gray-600 text-xs font-mono">
+     © 2025 Techturia. All rights reserved.
+    </div>
+   </footer>
+  </div>
+  <script>
+  // Element SDK
+  const defaultConfig = {
+    hero_headline: 'AI & The Future of Tech Skills',
+    hero_subheading: "Is learning tech still worth it in today's AI-driven world? Discover how to stay relevant and build real skills faster using AI.",
+    cta_text: '🚀 Register for Free',
+    event_date: '9th May, 2026',
+    event_time: '10:00 AM WAT',
+    event_location: 'Virtual (Google Meet)',
+    contact_email: 'techturiaofficial@gmail.com',
+    registration_sheet_webhook_url: 'https://script.google.com/macros/s/AKfycbxbfLWv7aaLMTl7aRjnjIqGaZDBOtgHu4wK7oKefrFp24yrq8y2AU4XRke7Se04XdRErw/exec', // Google Apps Script Web App URL for storing registration data in Sheets
+    contact_sheet_webhook_url: 'https://script.google.com/macros/s/AKfycbxbfLWv7aaLMTl7aRjnjIqGaZDBOtgHu4wK7oKefrFp24yrq8y2AU4XRke7Se04XdRErw/exec', // Google Apps Script Web App URL for storing contact messages in Sheets
+    whatsapp_group_url: 'https://chat.whatsapp.com/LrzmQH68G150NgK3vV0HPy?mode=gi_t',
+    contact_phone: '',
+    logo_image_url: 'https://drive.google.com/file/d/16uaHn0EJ_40OAZ8QjCUqi83IegJfg-rs/view?usp=sharing', // Paste your Google Drive or direct image URL here
+    logo_fallback_local: '', // Optional backup image URL or local path like ./assets/logo.png
+    background_color: '#0a0a0f',
+    accent_color: '#00FFAA',
+    text_color: '#ffffff',
+    card_color: '#12121a',
+    muted_text_color: '#9ca3af',
+    font_family: 'Outfit',
+    font_size: 16
+  };
+
+  function applyConfig(config) {
+    const c = key => config[key] || defaultConfig[key];
+
+    const getDriveFileId = (url) => {
+      if (!url) return '';
+      const trimmed = url.trim();
+      const idMatch = trimmed.match(/\/d\/([a-zA-Z0-9_-]+)/) || trimmed.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+      return idMatch && idMatch[1] ? idMatch[1] : '';
+    };
+
+    const getLogoCandidates = (primaryUrl, backupUrl) => {
+      const candidates = [];
+      const addCandidate = (url) => {
+        const trimmed = (url || '').trim();
+        if (!trimmed) return;
+        const driveId = getDriveFileId(trimmed);
+        if (driveId) {
+          candidates.push(`https://drive.google.com/uc?export=view&id=${driveId}`);
+          candidates.push(`https://drive.google.com/thumbnail?id=${driveId}&sz=w1000`);
+          candidates.push(`https://lh3.googleusercontent.com/d/${driveId}`);
+        } else {
+          candidates.push(trimmed);
+        }
+      };
+
+      addCandidate(primaryUrl);
+      addCandidate(backupUrl);
+
+      return [...new Set(candidates)];
+    };
+
+    const logoImg = document.getElementById('brand-logo-img');
+    const logoFallback = document.getElementById('brand-logo-fallback');
+    const logoCandidates = getLogoCandidates(c('logo_image_url'), c('logo_fallback_local'));
+    if (logoImg && logoFallback) {
+      if (logoCandidates.length > 0) {
+        logoImg.referrerPolicy = 'no-referrer';
+        let candidateIndex = 0;
+        const tryNextLogo = () => {
+          if (candidateIndex >= logoCandidates.length) {
+            logoImg.removeAttribute('src');
+            logoImg.style.display = 'none';
+            logoFallback.style.display = 'block';
+            return;
+          }
+          logoImg.src = logoCandidates[candidateIndex++];
+        };
+
+        logoImg.onload = () => {
+          logoImg.style.display = 'block';
+          logoFallback.style.display = 'none';
+        };
+        logoImg.onerror = () => tryNextLogo();
+
+        tryNextLogo();
+      } else {
+        logoImg.onload = null;
+        logoImg.onerror = null;
+        logoImg.removeAttribute('src');
+        logoImg.style.display = 'none';
+        logoFallback.style.display = 'block';
+      }
+    }
+
+    // Hero
+    const hl = document.getElementById('hero-headline');
+    const hlText = c('hero_headline');
+    if (hlText.includes('Tech Skills')) {
+      const parts = hlText.split('Tech Skills');
+      hl.innerHTML = parts[0] + '<br><span class="neon-text">Tech Skills</span>' + (parts[1] || '');
+    } else {
+      hl.textContent = hlText;
+    }
+
+    document.getElementById('hero-subheading').textContent = c('hero_subheading');
+    document.getElementById('hero-cta').textContent = c('cta_text');
+    document.getElementById('hero-cta').href = '#registration-form-section';
+    document.getElementById('header-register-btn').textContent = 'Register Free';
+    document.getElementById('header-register-btn').href = '#registration-form-section';
+    document.getElementById('final-cta').textContent = c('cta_text');
+    document.getElementById('final-cta').href = '#registration-form-section';
+
+    // Event
+    document.getElementById('event-date').textContent = c('event_date');
+    document.getElementById('event-time').textContent = c('event_time');
+    document.getElementById('event-location').textContent = c('event_location');
+
+    // Contact
+    const email = c('contact_email');
+    const phone = c('contact_phone');
+    const phoneText = document.getElementById('footer-phone');
+    const phoneLink = document.getElementById('footer-phone-link');
+    const recipientText = document.getElementById('contact-form-recipient');
+    const statusText = document.getElementById('contact-form-status');
+    const contactForm = document.getElementById('footer-contact-form');
+    const sheetWebhookUrl = (c('contact_sheet_webhook_url') || '').trim();
+    const hasSheetWebhook = /^https?:\/\//i.test(sheetWebhookUrl);
+    if (phoneText) phoneText.textContent = phone;
+    if (phoneLink) phoneLink.href = 'tel:' + phone.replace(/\s/g, '');
+    if (recipientText) {
+      recipientText.textContent = hasSheetWebhook ? '' : '';
+    }
+    if (statusText) statusText.textContent = '';
+    if (contactForm) {
+      contactForm.dataset.recipient = email;
+      contactForm.dataset.sheetWebhook = sheetWebhookUrl;
+      contactForm.dataset.whatsappGroup = c('whatsapp_group_url') || '';
+    }
+
+    // Registration
+    const registrationForm = document.getElementById('registration-form');
+    const registrationStatus = document.getElementById('registration-form-status');
+    if (registrationForm) {
+      registrationForm.dataset.sheetWebhook = (c('registration_sheet_webhook_url') || '').trim();
+      registrationForm.dataset.whatsappGroup = c('whatsapp_group_url') || '';
+    }
+    if (registrationStatus) {
+      registrationStatus.textContent = '';
+      registrationStatus.style.color = '#9ca3af';
+    }
+
+    // Colors
+    const bg = c('background_color');
+    const accent = c('accent_color');
+    const textCol = c('text_color');
+    const muted = c('muted_text_color');
+    document.body.style.background = bg;
+    document.body.style.color = textCol;
+    document.documentElement.style.setProperty('--accent', accent);
+
+    // Update neon text and accent elements
+    document.querySelectorAll('.neon-text').forEach(el => el.style.color = accent);
+    document.querySelectorAll('.section-label').forEach(el => {
+      if (!el.style.color || el.style.color === '#00FFAA' || el.style.color === 'rgb(0, 255, 170)') {
+        el.style.color = accent;
+      }
+    });
+    document.querySelectorAll('.glow-btn').forEach(btn => {
+      btn.style.background = accent;
+      btn.style.boxShadow = `0 0 30px ${accent}40`;
+    });
+    document.querySelectorAll('.register-btn-header').forEach(btn => {
+      btn.style.boxShadow = `0 0 30px ${accent}59`;
+    });
+    document.querySelectorAll('.logo-box').forEach(box => {
+      box.style.borderColor = `${accent}99`;
+      box.style.boxShadow = `0 0 0 1px ${accent}70 inset, 0 0 20px ${accent}4d`;
+    });
+
+    // Font
+    const font = c('font_family');
+    const baseSize = c('font_size');
+    document.body.style.fontFamily = `${font}, Outfit, sans-serif`;
+    hl.style.fontSize = `${baseSize * 3}px`;
+    document.getElementById('hero-subheading').style.fontSize = `${baseSize * 1.1}px`;
+  }
+
+  // Apply the saved/default config immediately so the logo and theme render on first load.
+  applyConfig(defaultConfig);
+
+  const initSpeakerImage = (imageElementId) => {
+    const speakerImg = document.getElementById(imageElementId);
+    if (!speakerImg || speakerImg.dataset.bound) return;
+
+    speakerImg.dataset.bound = '1';
+    const driveId = speakerImg.dataset.driveId || '';
+    const speakerFallbacks = driveId ? [
+      `https://drive.google.com/uc?export=view&id=${driveId}`,
+      `https://drive.google.com/uc?export=download&id=${driveId}`,
+      `https://drive.google.com/thumbnail?id=${driveId}&sz=w1000`,
+      `https://lh3.googleusercontent.com/d/${driveId}`
+    ] : [speakerImg.src];
+
+    let speakerTryIndex = 0;
+    speakerImg.referrerPolicy = 'no-referrer';
+    const tryNextSpeakerImage = () => {
+      if (speakerTryIndex >= speakerFallbacks.length) return;
+      speakerImg.src = speakerFallbacks[speakerTryIndex++];
+    };
+
+    speakerImg.onerror = () => tryNextSpeakerImage();
+    tryNextSpeakerImage();
+  };
+
+  initSpeakerImage('speaker-1-img');
+  initSpeakerImage('speaker-2-img');
+
+  const registrationForm = document.getElementById('registration-form');
+  if (registrationForm && !registrationForm.dataset.bound) {
+    registrationForm.dataset.bound = '1';
+    registrationForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const statusText = document.getElementById('registration-form-status');
+      const submitButton = registrationForm.querySelector('button[type="submit"]');
+      const sheetWebhook = (registrationForm.dataset.sheetWebhook || '').trim();
+      const whatsappGroup = (registrationForm.dataset.whatsappGroup || '').trim();
+
+      const formData = {
+        full_name: (document.getElementById('reg-full-name') || {}).value ? document.getElementById('reg-full-name').value.trim() : '',
+        phone_number: (document.getElementById('reg-phone') || {}).value ? document.getElementById('reg-phone').value.trim() : '',
+        email_address: (document.getElementById('reg-email') || {}).value ? document.getElementById('reg-email').value.trim() : '',
+        age_group: (document.getElementById('reg-age-group') || {}).value || '',
+        education_level: (document.getElementById('reg-education') || {}).value || '',
+        location: (document.getElementById('reg-location') || {}).value ? document.getElementById('reg-location').value.trim() : '',
+        area_of_interest: (document.getElementById('reg-interest') || {}).value || '',
+        tech_proficiency: (document.getElementById('reg-proficiency') || {}).value || '',
+        referral_source: (document.getElementById('reg-referral') || {}).value || ''
+      };
+
+      const isComplete = Object.values(formData).every(v => typeof v === 'string' && v.length > 0);
+      if (!isComplete) {
+        if (statusText) {
+          statusText.textContent = 'Please complete all fields before submitting.';
+          statusText.style.color = '#f87171';
+        }
+        return;
+      }
+
+      if (submitButton) submitButton.disabled = true;
+
+      try {
+        if (!/^https?:\/\//i.test(sheetWebhook)) {
+          throw new Error('Missing registration webhook URL');
+        }
+
+        const payload = new URLSearchParams({
+          form_type: 'registration',
+          source: 'techturia-event-page',
+          submitted_at: new Date().toISOString(),
+          ...formData
+        });
+
+        await fetch(sheetWebhook, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: payload
+        });
+
+        registrationForm.reset();
+        if (statusText) {
+          statusText.textContent = 'Registration successful. Redirecting you to our WhatsApp group...';
+          statusText.style.color = '#00FFAA';
+        }
+
+        if (/^https?:\/\//i.test(whatsappGroup)) {
+          setTimeout(() => {
+            window.location.href = whatsappGroup;
+          }, 1600);
+        }
+      } catch (error) {
+        if (statusText) {
+          statusText.textContent = 'Registration failed. Please try again in a moment.';
+          statusText.style.color = '#f87171';
+        }
+      } finally {
+        if (submitButton) submitButton.disabled = false;
+      }
+    });
+  }
+
+  const footerContactForm = document.getElementById('footer-contact-form');
+  if (footerContactForm && !footerContactForm.dataset.bound) {
+    footerContactForm.dataset.bound = '1';
+    footerContactForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const senderInput = document.getElementById('contact-form-email');
+      const messageInput = document.getElementById('contact-form-message');
+      const statusText = document.getElementById('contact-form-status');
+      const submitButton = footerContactForm.querySelector('button[type="submit"]');
+      const recipient = footerContactForm.dataset.recipient || defaultConfig.contact_email;
+      const sheetWebhook = (footerContactForm.dataset.sheetWebhook || '').trim();
+      const sender = senderInput ? senderInput.value.trim() : '';
+      const message = messageInput ? messageInput.value.trim() : '';
+
+      if (!sender || !message) return;
+
+      const setStatus = (text, isSuccess) => {
+        if (!statusText) return;
+        statusText.textContent = text;
+        statusText.style.color = isSuccess ? '#00FFAA' : '#f87171';
+      };
+
+      const subject = encodeURIComponent('New website message from ' + sender);
+      const body = encodeURIComponent('Sender: ' + sender + '\n\nMessage:\n' + message);
+
+      const openMailClient = () => {
+        window.location.href = 'mailto:' + recipient + '?subject=' + subject + '&body=' + body;
+      };
+
+      if (submitButton) submitButton.disabled = true;
+
+      try {
+        if (/^https?:\/\//i.test(sheetWebhook)) {
+          const payload = new URLSearchParams({
+            form_type: 'message',
+            sender_email: sender,
+            message,
+            recipient_email: recipient,
+            whatsapp_group_url: footerContactForm.dataset.whatsappGroup || '',
+            source: 'techturia-event-page',
+            submitted_at: new Date().toISOString()
+          });
+
+          await fetch(sheetWebhook, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: payload
+          });
+
+          setStatus('Message sent successfully and saved to Google Sheet.', true);
+          if (senderInput) senderInput.value = '';
+          if (messageInput) messageInput.value = '';
+        } else {
+          openMailClient();
+          setStatus('Opened your email app to send the message.', true);
+        }
+      } catch (error) {
+        openMailClient();
+        setStatus('Sheet submit failed, opened email app as fallback.', false);
+      } finally {
+        if (submitButton) submitButton.disabled = false;
+      }
+    });
+  }
+
+  if (window.elementSdk) {
+    window.elementSdk.init({
+      defaultConfig,
+      onConfigChange: async (config) => applyConfig(config),
+      mapToCapabilities: (config) => {
+        const c = key => config[key] || defaultConfig[key];
+        const makeColor = (key) => ({
+          get: () => c(key),
+          set: (v) => { config[key] = v; window.elementSdk.setConfig({ [key]: v }); }
+        });
+        return {
+          recolorables: [
+            makeColor('background_color'),
+            makeColor('accent_color'),
+            makeColor('text_color'),
+            makeColor('card_color'),
+            makeColor('muted_text_color')
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => c('font_family'),
+            set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+          },
+          fontSizeable: {
+            get: () => c('font_size'),
+            set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+          }
+        };
+      },
+      mapToEditPanelValues: (config) => {
+        const c = key => config[key] || defaultConfig[key];
+        return new Map([
+          ['hero_headline', c('hero_headline')],
+          ['hero_subheading', c('hero_subheading')],
+          ['cta_text', c('cta_text')],
+          ['event_date', c('event_date')],
+          ['event_time', c('event_time')],
+          ['event_location', c('event_location')],
+          ['contact_email', c('contact_email')],
+          ['contact_phone', c('contact_phone')]
+        ]);
+      }
+    });
+  }
+
+  // Init Lucide
+  lucide.createIcons();
+
+  // Scroll-based fade-in for sections
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('section').forEach(s => {
+    s.style.opacity = '0';
+    s.style.transform = 'translateY(20px)';
+    s.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(s);
+  });
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ee40760a2be71b1',t:'MTc3NjUxOTA3Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
