@@ -3,7 +3,7 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Techturia - AI &amp; The Future of Tech Skills</title>
+  <title>Alteturia - AI &amp; The Future of Tech Skills</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <script src="/_sdk/element_sdk.js"></script>
@@ -18,9 +18,9 @@
             mono: ['Space Mono', 'monospace']
           },
           colors: {
-            neon: '#00FFAA',
-            charcoal: '#0a0a0f',
-            'charcoal-light': '#12121a'
+            neon: '#6ED8FF',
+            charcoal: '#030816',
+            'charcoal-light': '#0b1328'
           }
         }
       }
@@ -28,12 +28,12 @@
   </script>
   <style>
     html, body { height: 100%; margin: 0; }
-    body { font-family: 'Outfit', sans-serif; background: #0a0a0f; color: #fff; }
+    body { font-family: 'Outfit', sans-serif; background: #030816; color: #fff; }
 
     .grid-bg {
       background-image:
-        linear-gradient(rgba(0,255,170,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,170,0.03) 1px, transparent 1px);
+        linear-gradient(rgba(110,216,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(110,216,255,0.03) 1px, transparent 1px);
       background-size: 60px 60px;
       position: relative;
     }
@@ -50,7 +50,7 @@
       height: 400px;
       top: -100px;
       left: -100px;
-      background: radial-gradient(circle, rgba(0,255,170,0.15) 0%, rgba(0,255,170,0) 70%);
+      background: radial-gradient(circle, rgba(110,216,255,0.15) 0%, rgba(110,216,255,0) 70%);
       animation: pulse-orb-1 8s ease-in-out infinite;
     }
     .orb-blue-mid {
@@ -66,7 +66,7 @@
       height: 320px;
       bottom: -100px;
       left: 10%;
-      background: radial-gradient(circle, rgba(0,255,170,0.12) 0%, rgba(0,255,170,0) 70%);
+      background: radial-gradient(circle, rgba(110,216,255,0.12) 0%, rgba(110,216,255,0) 70%);
       animation: pulse-orb-3 9s ease-in-out 1s infinite;
     }
 
@@ -87,9 +87,9 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(10, 10, 15, 0.8);
+      background: rgba(3, 8, 22, 0.8);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0, 255, 170, 0.1);
+      border-bottom: 1px solid rgba(110,216,255, 0.1);
       padding: 16px 24px;
     }
 
@@ -110,15 +110,15 @@
     .logo-box {
       width: 46px;
       height: 46px;
-      background: #00FFAA;
+      background: #6ED8FF;
       border-radius: 10px;
-      border: 1px solid rgba(0, 255, 170, 0.55);
-      box-shadow: 0 0 0 1px rgba(0, 255, 170, 0.45) inset, 0 0 20px rgba(0, 255, 170, 0.35);
+      border: 1px solid rgba(110,216,255, 0.55);
+      box-shadow: 0 0 0 1px rgba(110,216,255, 0.45) inset, 0 0 20px rgba(110,216,255, 0.35);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 900;
-      color: #0a0a0f;
+      color: #030816;
       font-size: 20px;
       font-family: 'Outfit', sans-serif;
       overflow: hidden;
@@ -132,7 +132,7 @@
       position: absolute;
       inset: -2px;
       border-radius: 12px;
-      border: 1px solid rgba(0, 255, 170, 0.3);
+      border: 1px solid rgba(110,216,255, 0.3);
       pointer-events: none;
       z-index: -1;
     }
@@ -160,8 +160,8 @@
     }
 
     .register-btn-header {
-      background: linear-gradient(135deg, #00FFAA 0%, #00CC88 100%);
-      color: #0a0a0f;
+      background: linear-gradient(135deg, #6ED8FF 0%, #2E84CC 100%);
+      color: #030816;
       font-weight: 700;
       border-radius: 24px;
       padding: 12px 28px;
@@ -170,17 +170,17 @@
       cursor: pointer;
       border: none;
       font-family: 'Outfit', sans-serif;
-      box-shadow: 0 0 30px rgba(0, 255, 170, 0.35);
+      box-shadow: 0 0 30px rgba(110,216,255, 0.35);
     }
     .register-btn-header:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 50px rgba(0, 255, 170, 0.5);
+      box-shadow: 0 0 50px rgba(110,216,255, 0.5);
     }
 
     .live-badge {
       display: inline-block;
-      border: 1px solid rgba(0, 255, 170, 0.2);
-      background: rgba(0, 255, 170, 0.05);
+      border: 1px solid rgba(110,216,255, 0.2);
+      background: rgba(110,216,255, 0.05);
       border-radius: 20px;
       padding: 8px 16px;
       font-family: 'Space Mono', monospace;
@@ -188,40 +188,40 @@
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: #00FFAA;
+      color: #6ED8FF;
       margin-bottom: 32px;
     }
 
     .glass-card {
       background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(0,255,170,0.15);
+      border: 1px solid rgba(110,216,255,0.15);
       backdrop-filter: blur(10px);
       border-radius: 16px;
       transition: all 0.3s ease;
     }
     .glass-card:hover {
-      border-color: rgba(0,255,170,0.3);
+      border-color: rgba(110,216,255,0.3);
       transform: translateY(-4px);
-      box-shadow: 0 8px 32px rgba(0,255,170,0.08);
+      box-shadow: 0 8px 32px rgba(110,216,255,0.08);
     }
 
     .glow-btn {
-      background: #00FFAA;
-      color: #0a0a0f;
+      background: #6ED8FF;
+      color: #030816;
       font-weight: 700;
       border-radius: 12px;
       padding: 16px 36px;
       font-size: 1.1rem;
       transition: all 0.3s ease;
-      box-shadow: 0 0 30px rgba(0,255,170,0.3);
+      box-shadow: 0 0 30px rgba(110,216,255,0.3);
       cursor: pointer;
       border: none;
       font-family: 'Outfit', sans-serif;
     }
     .glow-btn:hover {
-      background: #33ffc6;
+      background: #A7EBFF;
       transform: translateY(-2px);
-      box-shadow: 0 0 50px rgba(0,255,170,0.5);
+      box-shadow: 0 0 50px rgba(110,216,255,0.5);
     }
 
     .social-icon {
@@ -229,7 +229,7 @@
       transition: all 0.3s ease;
       cursor: pointer;
     }
-    .social-icon:hover { color: #00FFAA; transform: scale(1.15); }
+    .social-icon:hover { color: #6ED8FF; transform: scale(1.15); }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -250,14 +250,14 @@
       font-size: 0.75rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: #00FFAA;
+      color: #6ED8FF;
       margin-bottom: 0.75rem;
     }
 
-    .neon-text { color: #00FFAA; }
+    .neon-text { color: #6ED8FF; }
 
     .circuit-line {
-      stroke: #00FFAA;
+      stroke: #6ED8FF;
       stroke-width: 1.5;
       fill: none;
       opacity: 0.6;
@@ -294,18 +294,18 @@
     <div class="header-content">
      <div class="logo-section">
       <div class="logo-box">
-         <img id="brand-logo-img" alt="Techturia logo" style="display:none;">
-         <span id="brand-logo-fallback">T</span>
+         <img id="brand-logo-img" alt="Alteturia logo" style="display:none;">
+         <span id="brand-logo-fallback">A</span>
       </div>
       <div class="logo-text">
-       Techturia
+       Alteturia
       </div>
     </div><a id="header-register-btn" href="#registration-form-section" class="register-btn-header" style="display:inline-block;text-decoration:none;">Register Free</a>
     </div>
    </header><!-- HERO -->
    <section class="w-full px-6 pt-16 pb-20 flex flex-col items-center text-center max-w-4xl mx-auto">
     <div class="fade-up fade-up-d1 mb-6">
-     <svg width="100" height="100" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><!-- Brain outline --> <ellipse cx="38" cy="48" rx="22" ry="28" stroke="#00FFAA" stroke-width="1.8" fill="none" opacity="0.7" /> <ellipse cx="62" cy="48" rx="22" ry="28" stroke="#00FFAA" stroke-width="1.8" fill="none" opacity="0.7" /> <!-- Circuit nodes --> <circle cx="35" cy="35" r="2.5" fill="#00FFAA" /> <circle cx="50" cy="28" r="2.5" fill="#00FFAA" /> <circle cx="65" cy="35" r="2.5" fill="#00FFAA" /> <circle cx="30" cy="50" r="2.5" fill="#00FFAA" /> <circle cx="50" cy="50" r="3" fill="#00FFAA" /> <circle cx="70" cy="50" r="2.5" fill="#00FFAA" /> <circle cx="38" cy="65" r="2.5" fill="#00FFAA" /> <circle cx="62" cy="65" r="2.5" fill="#00FFAA" /> <!-- Circuit lines --> <line x1="35" y1="35" x2="50" y2="28" class="circuit-line" /> <line x1="50" y1="28" x2="65" y2="35" class="circuit-line" /> <line x1="30" y1="50" x2="50" y2="50" class="circuit-line" /> <line x1="50" y1="50" x2="70" y2="50" class="circuit-line" /> <line x1="35" y1="35" x2="30" y2="50" class="circuit-line" /> <line x1="65" y1="35" x2="70" y2="50" class="circuit-line" /> <line x1="30" y1="50" x2="38" y2="65" class="circuit-line" /> <line x1="70" y1="50" x2="62" y2="65" class="circuit-line" /> <line x1="50" y1="50" x2="38" y2="65" class="circuit-line" /> <line x1="50" y1="50" x2="62" y2="65" class="circuit-line" /> <!-- Glow --> <circle cx="50" cy="50" r="3" fill="#00FFAA" opacity="0.3">
+     <svg width="100" height="100" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><!-- Brain outline --> <ellipse cx="38" cy="48" rx="22" ry="28" stroke="#6ED8FF" stroke-width="1.8" fill="none" opacity="0.7" /> <ellipse cx="62" cy="48" rx="22" ry="28" stroke="#6ED8FF" stroke-width="1.8" fill="none" opacity="0.7" /> <!-- Circuit nodes --> <circle cx="35" cy="35" r="2.5" fill="#6ED8FF" /> <circle cx="50" cy="28" r="2.5" fill="#6ED8FF" /> <circle cx="65" cy="35" r="2.5" fill="#6ED8FF" /> <circle cx="30" cy="50" r="2.5" fill="#6ED8FF" /> <circle cx="50" cy="50" r="3" fill="#6ED8FF" /> <circle cx="70" cy="50" r="2.5" fill="#6ED8FF" /> <circle cx="38" cy="65" r="2.5" fill="#6ED8FF" /> <circle cx="62" cy="65" r="2.5" fill="#6ED8FF" /> <!-- Circuit lines --> <line x1="35" y1="35" x2="50" y2="28" class="circuit-line" /> <line x1="50" y1="28" x2="65" y2="35" class="circuit-line" /> <line x1="30" y1="50" x2="50" y2="50" class="circuit-line" /> <line x1="50" y1="50" x2="70" y2="50" class="circuit-line" /> <line x1="35" y1="35" x2="30" y2="50" class="circuit-line" /> <line x1="65" y1="35" x2="70" y2="50" class="circuit-line" /> <line x1="30" y1="50" x2="38" y2="65" class="circuit-line" /> <line x1="70" y1="50" x2="62" y2="65" class="circuit-line" /> <line x1="50" y1="50" x2="38" y2="65" class="circuit-line" /> <line x1="50" y1="50" x2="62" y2="65" class="circuit-line" /> <!-- Glow --> <circle cx="50" cy="50" r="3" fill="#6ED8FF" opacity="0.3">
        <animate attributename="r" values="3;8;3" dur="3s" repeatcount="indefinite" />
        <animate attributename="opacity" values="0.3;0.08;0.3" dur="3s" repeatcount="indefinite" />
       </circle>
@@ -315,28 +315,28 @@
     <p id="hero-subheading" class="fade-up fade-up-d3 text-base sm:text-lg text-gray-400 max-w-2xl mb-10 leading-relaxed">Is learning tech still worth it in today's AI-driven world? Discover how to stay relevant and build real skills faster using AI.</p><a href="#registration-form-section" id="hero-cta" class="fade-up fade-up-d4 glow-btn" style="display:inline-block;text-decoration:none;">🚀 Register for Free</a>
    </section><!-- ABOUT -->
    <section class="w-full px-6 py-16 max-w-4xl mx-auto">
-    <div class="glass-card p-8 sm:p-10"><span class="section-label">About Techturia</span>
+    <div class="glass-card p-8 sm:p-10"><span class="section-label">About Alteturia</span>
      <h2 class="text-2xl sm:text-3xl font-bold mb-4">Empowering the Next Generation of Tech Builders</h2>
-     <p class="text-gray-400 leading-relaxed">Techturia is a community-driven platform dedicated to making tech education accessible, practical, and future-proof. We bridge the gap between traditional learning and the rapidly evolving AI landscape, helping you build skills that actually matter in the real world.</p>
+     <p class="text-gray-400 leading-relaxed">Alteturia is a community-driven platform dedicated to making tech education accessible, practical, and future-proof. We bridge the gap between traditional learning and the rapidly evolving AI landscape, helping you build skills that actually matter in the real world.</p>
     </div>
    </section>
    <!-- MISSION & VISION -->
    <section class="w-full px-6 py-16 max-w-4xl mx-auto">
     <div class="text-center mb-10"><span class="section-label">Our Direction</span>
      <h2 class="text-2xl sm:text-3xl font-bold">Mission &amp; Vision</h2>
-     <p class="text-gray-400 max-w-2xl mx-auto mt-3">The foundation behind everything we build at Techturia.</p>
+     <p class="text-gray-400 max-w-2xl mx-auto mt-3">The foundation behind everything we build at Alteturia.</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
      <div class="glass-card p-7">
-      <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(0,255,170,0.1);">
-       <i data-lucide="compass" style="width:20px;height:20px;color:#00FFAA;"></i>
+      <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(110,216,255,0.1);">
+       <i data-lucide="compass" style="width:20px;height:20px;color:#6ED8FF;"></i>
       </div>
       <h3 class="text-lg font-bold mb-2">Vision</h3>
       <p class="text-gray-400 text-sm leading-relaxed">To shape a future where tech education is accessible, practical, and powerful enough to help anyone thrive in an AI-driven world.</p>
      </div>
      <div class="glass-card p-7">
-      <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(0,255,170,0.1);">
-       <i data-lucide="target" style="width:20px;height:20px;color:#00FFAA;"></i>
+      <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(110,216,255,0.1);">
+       <i data-lucide="target" style="width:20px;height:20px;color:#6ED8FF;"></i>
       </div>
       <h3 class="text-lg font-bold mb-2">Mission</h3>
       <p class="text-gray-400 text-sm leading-relaxed">To equip learners and builders with relevant, real-world skills and guided AI workflows that accelerate growth and career readiness.</p>
@@ -357,29 +357,29 @@
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
      <div class="glass-card p-7">
-      <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(0,255,170,0.1);">
-       <i data-lucide="cpu" style="width:20px;height:20px;color:#00FFAA;"></i>
+      <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(110,216,255,0.1);">
+       <i data-lucide="cpu" style="width:20px;height:20px;color:#6ED8FF;"></i>
       </div>
       <h3 class="text-lg font-bold mb-2">AI &amp; Tech Careers</h3>
       <p class="text-gray-400 text-sm leading-relaxed">How AI is transforming tech careers and which skills remain in high demand.</p>
      </div>
      <div class="glass-card p-7">
-      <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(0,255,170,0.1);">
-       <i data-lucide="code" style="width:20px;height:20px;color:#00FFAA;"></i>
+      <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(110,216,255,0.1);">
+       <i data-lucide="code" style="width:20px;height:20px;color:#6ED8FF;"></i>
       </div>
       <h3 class="text-lg font-bold mb-2">Is Coding Still Relevant?</h3>
       <p class="text-gray-400 text-sm leading-relaxed">Whether coding skills are still valuable or if AI is replacing developers.</p>
      </div>
      <div class="glass-card p-7">
-      <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(0,255,170,0.1);">
-       <i data-lucide="zap" style="width:20px;height:20px;color:#00FFAA;"></i>
+      <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(110,216,255,0.1);">
+       <i data-lucide="zap" style="width:20px;height:20px;color:#6ED8FF;"></i>
       </div>
       <h3 class="text-lg font-bold mb-2">AI-Powered Learning</h3>
       <p class="text-gray-400 text-sm leading-relaxed">How to use AI tools to accelerate your learning and build skills faster.</p>
      </div>
      <div class="glass-card p-7">
-      <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(0,255,170,0.1);">
-       <i data-lucide="rocket" style="width:20px;height:20px;color:#00FFAA;"></i>
+      <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(110,216,255,0.1);">
+       <i data-lucide="rocket" style="width:20px;height:20px;color:#6ED8FF;"></i>
       </div>
       <h3 class="text-lg font-bold mb-2">The Smartest Path</h3>
       <p class="text-gray-400 text-sm leading-relaxed">The clearest roadmap to becoming highly skilled and relevant faster.</p>
@@ -390,21 +390,21 @@
     <div class="glass-card p-8 sm:p-10"><span class="section-label">Who Is This For?</span>
      <h2 class="text-2xl sm:text-3xl font-bold mb-6">This Event Is Perfect For You If…</h2>
      <ul class="space-y-3">
-      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" style="width:18px;height:18px;color:#00FFAA;flex-shrink:0;margin-top:3px;"></i><span>You're a beginner wondering if learning tech is still worth it</span></li>
-      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" style="width:18px;height:18px;color:#00FFAA;flex-shrink:0;margin-top:3px;"></i><span>You're a developer worried about AI replacing your job</span></li>
-      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" style="width:18px;height:18px;color:#00FFAA;flex-shrink:0;margin-top:3px;"></i><span>You want to learn how to use AI as a superpower, not a threat</span></li>
-      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" style="width:18px;height:18px;color:#00FFAA;flex-shrink:0;margin-top:3px;"></i><span>You're a student, freelancer, or career switcher in tech</span></li>
-      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" style="width:18px;height:18px;color:#00FFAA;flex-shrink:0;margin-top:3px;"></i><span>You want clarity on what skills to focus on in 2025 and beyond</span></li>
+      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" style="width:18px;height:18px;color:#6ED8FF;flex-shrink:0;margin-top:3px;"></i><span>You're a beginner wondering if learning tech is still worth it</span></li>
+      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" style="width:18px;height:18px;color:#6ED8FF;flex-shrink:0;margin-top:3px;"></i><span>You're a developer worried about AI replacing your job</span></li>
+      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" style="width:18px;height:18px;color:#6ED8FF;flex-shrink:0;margin-top:3px;"></i><span>You want to learn how to use AI as a superpower, not a threat</span></li>
+      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" style="width:18px;height:18px;color:#6ED8FF;flex-shrink:0;margin-top:3px;"></i><span>You're a student, freelancer, or career switcher in tech</span></li>
+      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check" style="width:18px;height:18px;color:#6ED8FF;flex-shrink:0;margin-top:3px;"></i><span>You want clarity on what skills to focus on in 2025 and beyond</span></li>
      </ul>
     </div>
    </section>
    <section class="w-full px-6 py-12 max-w-4xl mx-auto">
-    <div class="glass-card p-8 sm:p-10" style="border-color: rgba(0,255,170,0.25); background: rgba(0,255,170,0.03);"><span class="section-label">Bonus</span>
-     <h2 class="text-2xl sm:text-3xl font-bold mb-5">Early Access to Techturia Courses</h2>
+    <div class="glass-card p-8 sm:p-10" style="border-color: rgba(110,216,255,0.25); background: rgba(110,216,255,0.03);"><span class="section-label">Bonus</span>
+     <h2 class="text-2xl sm:text-3xl font-bold mb-5">Early Access to Alteturia Courses</h2>
      <p class="text-gray-400 mb-6">All registered attendees get exclusive early access to our upcoming courses, including:</p>
      <ul class="space-y-3">
-      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check-circle" style="width:20px;height:20px;color:#00FFAA;flex-shrink:0;margin-top:2px;"></i><span>AI Agents: for Content creation, Data Analysis and web development</span></li>
-      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check-circle" style="width:20px;height:20px;color:#00FFAA;flex-shrink:0;margin-top:2px;"></i><span>Programming Fundamentals with focus on AI Integration</span></li>
+      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check-circle" style="width:20px;height:20px;color:#6ED8FF;flex-shrink:0;margin-top:2px;"></i><span>AI Agents: for Content creation, Data Analysis and web development</span></li>
+      <li class="flex items-start gap-3 text-gray-300"><i data-lucide="check-circle" style="width:20px;height:20px;color:#6ED8FF;flex-shrink:0;margin-top:2px;"></i><span>Programming Fundamentals with focus on AI Integration</span></li>
      </ul>
     </div>
      </section>
@@ -422,11 +422,11 @@
         <p class="text-gray-400 text-sm leading-relaxed">Ridwan helps organizations turn complex data into actionable insights through analytics, machine learning, and digital strategy. As a Udemy instructor, he has taught thousands of learners globally with practical, accessible courses, and through technical writing, he simplifies advanced concepts for both technical and non-technical audiences.</p>
        </article>
       <article class="glass-card p-5 sm:p-6 overflow-hidden">
-       <img id="speaker-2-img" src="https://drive.google.com/uc?export=view&id=1vXePXniE314hfdLZxEHh9jq7ZJvgJHgJ" data-drive-id="1vXePXniE314hfdLZxEHh9jq7ZJvgJHgJ" referrerpolicy="no-referrer" alt="Speaker 2 portrait" class="w-full aspect-square object-cover rounded-xl mb-5 border border-neon/20">
+      <img id="speaker-2-img" src="https://drive.google.com/uc?export=view&id=1vXePXniE314hfdLZxEHh9jq7ZJvgJHgJ" data-drive-id="1vXePXniE314hfdLZxEHh9jq7ZJvgJHgJ" referrerpolicy="no-referrer" alt="Surajju Nuhu portrait" class="w-full aspect-square object-cover rounded-xl mb-5 border border-neon/20">
         <div class="section-label mb-2"></div>
         <h3 class="text-xl font-bold mb-1">Surajju Nuhu</h3>
         <p class="text-sm text-gray-500 mb-3">AI/ML Researcher | Data Scientist | Computer Engineer</p>
-        <p class="text-gray-400 text-sm leading-relaxed">Speaker Two focuses on helping professionals future-proof their careers, master high-impact skills, and stand out in today&rsquo;s fast-changing tech landscape.</p>
+        <p class="text-gray-400 text-sm leading-relaxed">Surajju is a First Class graduate of Computer Engineering from ABU Zaria, the Best Graduating Student in the Faculty of Engineering, and a recipient of the NSE Certificate of Excellence and the MT Scholar distinction. He is currently pursuing his M.Tech at Shobhit Institute of Engineering, Meerut, India, while advancing practical AI and data-driven solutions.</p>
        </article>
       </div>
      </section>
@@ -484,7 +484,7 @@
         <option>Frontend Development</option>
         <option>Backend Development</option>
         <option>Full-Stack Development</option>
-        <option>Data Science</option>
+        <option>Data Analysis/Data Science</option>
         <option>Machine Learning / AI</option>
         <option>Cybersecurity</option>
         <option>Cloud / DevOps</option>
@@ -534,7 +534,7 @@
     </div>
     <div class="glass-card p-8 sm:p-10 max-w-lg mx-auto">
      <div class="space-y-5">
-      <div class="flex items-center gap-4"><i data-lucide="calendar" style="width:24px;height:24px;color:#00FFAA;flex-shrink:0;"></i>
+      <div class="flex items-center gap-4"><i data-lucide="calendar" style="width:24px;height:24px;color:#6ED8FF;flex-shrink:0;"></i>
        <div>
         <div class="text-xs text-gray-500 font-mono uppercase tracking-wider">
          Date
@@ -544,7 +544,7 @@
         </div>
        </div>
       </div>
-      <div class="flex items-center gap-4"><i data-lucide="clock" style="width:24px;height:24px;color:#00FFAA;flex-shrink:0;"></i>
+      <div class="flex items-center gap-4"><i data-lucide="clock" style="width:24px;height:24px;color:#6ED8FF;flex-shrink:0;"></i>
        <div>
         <div class="text-xs text-gray-500 font-mono uppercase tracking-wider">
          Time
@@ -554,7 +554,7 @@
         </div>
        </div>
       </div>
-      <div class="flex items-center gap-4"><i data-lucide="map-pin" style="width:24px;height:24px;color:#00FFAA;flex-shrink:0;"></i>
+      <div class="flex items-center gap-4"><i data-lucide="map-pin" style="width:24px;height:24px;color:#6ED8FF;flex-shrink:0;"></i>
        <div>
         <div class="text-xs text-gray-500 font-mono uppercase tracking-wider">
          Location
@@ -590,7 +590,7 @@
      </div><!-- Follow Us -->
      <div>
       <h4 class="font-bold text-sm uppercase tracking-wider mb-4 neon-text">Follow Us</h4>
-      <div class="flex gap-4"><a href="https://x.com/techturia_" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-lucide="twitter" style="width:22px;height:22px;"></i></a> <a href="https://www.instagram.com/techturiaofficial?igsh=MTNqZ3VkdWx5cHAxYQ==" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-lucide="instagram" style="width:22px;height:22px;"></i></a> <a href="https://www.linkedin.com/company/techturia" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-lucide="linkedin" style="width:22px;height:22px;"></i></a> <a href="https://chat.whatsapp.com/KqY1Ylt7l4w7JDxzv5jq1H?mode=gi_t" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-lucide="message-circle" style="width:22px;height:22px;"></i></a>
+      <div class="flex gap-4"><a href="https://x.com/alteturia" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-lucide="twitter" style="width:22px;height:22px;"></i></a> <a href="https://www.instagram.com/alteturia?igsh=MTNqZ3VkdWx5cHAxYQ==" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-lucide="instagram" style="width:22px;height:22px;"></i></a> <a href="https://www.linkedin.com/company/alteturia" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-lucide="linkedin" style="width:22px;height:22px;"></i></a> <a href="https://chat.whatsapp.com/KqY1Ylt7l4w7JDxzv5jq1H?mode=gi_t" target="_blank" rel="noopener noreferrer" class="social-icon"><i data-lucide="message-circle" style="width:22px;height:22px;"></i></a>
       </div>
      </div><!-- Links -->
      <div>
@@ -600,7 +600,7 @@
      </div>
     </div>
     <div class="max-w-4xl mx-auto mt-10 pt-6 border-t border-gray-800/30 text-center text-gray-600 text-xs font-mono">
-     © 2025 Techturia. All rights reserved.
+     © 2025 Alteturia. All rights reserved.
     </div>
    </footer>
   </div>
@@ -613,17 +613,17 @@
     event_date: '9th May, 2026',
     event_time: '10:00 AM WAT',
     event_location: 'Virtual (Google Meet)',
-    contact_email: 'techturiaofficial@gmail.com',
+    contact_email: 'alteturiaofficial@gmail.com',
     registration_sheet_webhook_url: 'https://script.google.com/macros/s/AKfycbxbfLWv7aaLMTl7aRjnjIqGaZDBOtgHu4wK7oKefrFp24yrq8y2AU4XRke7Se04XdRErw/exec', // Google Apps Script Web App URL for storing registration data in Sheets
     contact_sheet_webhook_url: 'https://script.google.com/macros/s/AKfycbxbfLWv7aaLMTl7aRjnjIqGaZDBOtgHu4wK7oKefrFp24yrq8y2AU4XRke7Se04XdRErw/exec', // Google Apps Script Web App URL for storing contact messages in Sheets
     whatsapp_group_url: 'https://chat.whatsapp.com/LrzmQH68G150NgK3vV0HPy?mode=gi_t',
     contact_phone: '',
-    logo_image_url: 'https://drive.google.com/file/d/16uaHn0EJ_40OAZ8QjCUqi83IegJfg-rs/view?usp=sharing', // Paste your Google Drive or direct image URL here
+    logo_image_url: 'https://drive.google.com/file/d/1XSe6_1MyGamTZiMGA94nvjWiTXkWVXKb/view?usp=sharing', // Paste your Google Drive or direct image URL here
     logo_fallback_local: '', // Optional backup image URL or local path like ./assets/logo.png
-    background_color: '#0a0a0f',
-    accent_color: '#00FFAA',
+    background_color: '#030816',
+    accent_color: '#6ED8FF',
     text_color: '#ffffff',
-    card_color: '#12121a',
+    card_color: '#0b1328',
     muted_text_color: '#9ca3af',
     font_family: 'Outfit',
     font_size: 16
@@ -762,7 +762,7 @@
     // Update neon text and accent elements
     document.querySelectorAll('.neon-text').forEach(el => el.style.color = accent);
     document.querySelectorAll('.section-label').forEach(el => {
-      if (!el.style.color || el.style.color === '#00FFAA' || el.style.color === 'rgb(0, 255, 170)') {
+      if (!el.style.color || el.style.color === '#6ED8FF' || el.style.color === 'rgb(110, 216, 255)') {
         el.style.color = accent;
       }
     });
@@ -856,7 +856,7 @@
 
         const payload = new URLSearchParams({
           form_type: 'registration',
-          source: 'techturia-event-page',
+          source: 'alteturia-event-page',
           submitted_at: new Date().toISOString(),
           ...formData
         });
@@ -870,7 +870,7 @@
         registrationForm.reset();
         if (statusText) {
           statusText.textContent = 'Registration successful. Redirecting you to our WhatsApp group...';
-          statusText.style.color = '#00FFAA';
+          statusText.style.color = '#6ED8FF';
         }
 
         if (/^https?:\/\//i.test(whatsappGroup)) {
@@ -908,7 +908,7 @@
       const setStatus = (text, isSuccess) => {
         if (!statusText) return;
         statusText.textContent = text;
-        statusText.style.color = isSuccess ? '#00FFAA' : '#f87171';
+        statusText.style.color = isSuccess ? '#6ED8FF' : '#f87171';
       };
 
       const subject = encodeURIComponent('New website message from ' + sender);
@@ -928,7 +928,7 @@
             message,
             recipient_email: recipient,
             whatsapp_group_url: footerContactForm.dataset.whatsappGroup || '',
-            source: 'techturia-event-page',
+            source: 'alteturia-event-page',
             submitted_at: new Date().toISOString()
           });
 
@@ -938,7 +938,7 @@
             body: payload
           });
 
-          setStatus('Message sent successfully and saved to Google Sheet.', true);
+          setStatus('Your message was received successfully.', true);
           if (senderInput) senderInput.value = '';
           if (messageInput) messageInput.value = '';
         } else {
