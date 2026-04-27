@@ -1,2 +1,2 @@
 # Event-Landing-page
-Landing page for techturia's first Event.
+Landing page for Alteturia's first Event.
