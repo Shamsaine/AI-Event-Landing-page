@@ -7,7 +7,6 @@
   <title>Events & Workshops | Alteturia</title>
   <link rel="icon" type="image/png" href="../logo-preview/logo.png">
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/styles.css">
@@ -45,15 +44,15 @@
     <section class="w-full px-6 pt-20 pb-12 flex flex-col items-center text-center max-w-4xl mx-auto">
      <span class="live-badge fade-up fade-up-d1">🎯 EXPLORE</span>
      <h1 class="fade-up fade-up-d2 text-4xl sm:text-5xl md:text-6xl font-900 leading-tight mb-6">Events & <span class="neon-text">Workshops</span></h1>
-     <p class="fade-up fade-up-d3 text-base sm:text-lg text-gray-400 max-w-2xl">Explore our expert-led webinars, workshops, and career development programs designed to accelerate your tech journey.</p>
+      <p class="fade-up fade-up-d3 text-base sm:text-lg text-gray-400 max-w-2xl">Explore our expert-led webinars, workshops, and career development programs designed to accelerate your tech journey. This page introduces the first session of the <a href="future-builder-series.html" class="text-neon underline underline-offset-4">Alteturia Future Builder Series</a>, a six-session program built for practical growth.</p>
     </section>
 
     <!-- UPCOMING EVENTS -->
     <section class="w-full px-6 py-16 max-w-5xl mx-auto">
-     <div class="text-center mb-12">
-      <span class="section-label">Featured Event</span>
-      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold">Alteturia Tech Career Discovery Series 2026</h2>
-     </div>
+    <div class="text-center mb-12">
+     <span class="section-label">Featured Event</span>
+     <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold">Career discovery: Technical session</h2>
+    </div>
      
      <!-- Main Upcoming Event -->
      <div class="glass-card p-8 sm:p-10 mb-8" style="border-color: rgba(110,216,255,0.35); background: rgba(110,216,255,0.05);">
@@ -61,13 +60,38 @@
        <span class="inline-block px-3 py-1 rounded-full text-xs font-mono font-bold text-neon" style="background: rgba(110,216,255,0.1); border: 1px solid rgba(110,216,255,0.2);">UPCOMING</span>
       </div>
       <h3 class="text-2xl sm:text-3xl font-bold mb-3">Navigating Your Tech Path and Thriving in the Age of AI</h3>
-      <p class="text-gray-400 leading-relaxed mb-6">A four-part virtual technical workshop designed to help participants understand different technology careers, build effective learning strategies, and use AI to accelerate their growth. Perfect for beginners and professionals looking to transition into new tech roles.</p>
+      <p class="text-gray-400 leading-relaxed mb-6">The first session of the <a href="future-builder-series.html" class="text-neon underline underline-offset-4">Alteturia Future Builder Series</a> is a six-part virtual program designed to help participants understand technology pathways, build effective learning strategies, and use AI to accelerate their growth.</p>
+
+      <!-- Problem / Solution -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+       <div class="glass-card p-6" style="background: rgba(255,255,255,0.02);">
+        <span class="section-label">The Problem</span>
+        <p class="text-gray-400 leading-relaxed">Many learners know they want a future in tech, but they lack a clear route, a practical learning system, and the confidence to turn interest into execution.</p>
+       </div>
+       <div class="glass-card p-6" style="background: rgba(255,255,255,0.02);">
+        <span class="section-label">The Solution</span>
+        <p class="text-gray-400 leading-relaxed">This session gives a structured roadmap, real track options, and practical guidance so participants can choose a direction, stay consistent, and build with purpose.</p>
+       </div>
+      </div>
+
+      <!-- Host -->
+      <div class="glass-card p-6 mb-8" style="background: rgba(110,216,255,0.04); border-color: rgba(110,216,255,0.18);">
+       <span class="section-label">Host</span>
+       <div class="flex flex-col sm:flex-row gap-5 items-center sm:items-start">
+        <img src="../logo-preview/Host.jpg" alt="Alteturia host" class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover border border-cyan-300/30 shadow-[0_0_30px_rgba(110,216,255,0.18)]">
+        <div class="text-center sm:text-left">
+         <h4 class="text-xl font-bold mb-2">Host and Program Lead</h4>
+         <p class="text-gray-400 leading-relaxed">A community-driven builder focused on helping people learn faster, work smarter, and move from curiosity to real execution through practical systems, mentorship, and AI-enabled workflows.</p>
+        </div>
+       </div>
+      </div>
       
       <!-- Event Schedule -->
       <div class="mb-8">
        <h4 class="text-lg font-bold mb-4">Workshop Sessions</h4>
+       <p class="text-sm text-gray-400 mb-4">Click any technical track to see the full curriculum on the Future Builder Series page.</p>
        <div class="space-y-3">
-        <div class="flex gap-3 p-4 rounded-lg" style="background: rgba(110,216,255,0.05); border: 1px solid rgba(110,216,255,0.15);">
+        <a href="future-builder-series.html#technical-sessions" class="flex gap-3 p-4 rounded-lg" style="background: rgba(110,216,255,0.05); border: 1px solid rgba(110,216,255,0.15); text-decoration: none; color: inherit;">
          <div class="flex-shrink-0">
           <div class="flex items-center justify-center w-8 h-8 rounded-full" style="background: rgba(110,216,255,0.2);">
            <span class="text-sm font-bold text-neon">1</span>
@@ -75,10 +99,10 @@
          </div>
          <div>
           <p class="font-semibold">Software Development Track</p>
-          <p class="text-sm text-gray-400">Frontend, Backend, and Full Stack Development</p>
+          <p class="text-sm text-gray-400">Saturday, 13 June 2026, 10:00 AM - 1:00 PM</p>
          </div>
-        </div>
-        <div class="flex gap-3 p-4 rounded-lg" style="background: rgba(110,216,255,0.05); border: 1px solid rgba(110,216,255,0.15);">
+        </a>
+        <a href="future-builder-series.html#technical-sessions" class="flex gap-3 p-4 rounded-lg" style="background: rgba(110,216,255,0.05); border: 1px solid rgba(110,216,255,0.15); text-decoration: none; color: inherit;">
          <div class="flex-shrink-0">
           <div class="flex items-center justify-center w-8 h-8 rounded-full" style="background: rgba(110,216,255,0.2);">
            <span class="text-sm font-bold text-neon">2</span>
@@ -86,10 +110,10 @@
          </div>
          <div>
           <p class="font-semibold">Data and Emerging Technologies Track</p>
-          <p class="text-sm text-gray-400">Data analysis, Data Science, AI/ML</p>
+          <p class="text-sm text-gray-400">Sunday, 14 June 2026, 1:00 PM - 4:00 PM</p>
          </div>
-        </div>
-        <div class="flex gap-3 p-4 rounded-lg" style="background: rgba(110,216,255,0.05); border: 1px solid rgba(110,216,255,0.15);">
+        </a>
+        <a href="future-builder-series.html#technical-sessions" class="flex gap-3 p-4 rounded-lg" style="background: rgba(110,216,255,0.05); border: 1px solid rgba(110,216,255,0.15); text-decoration: none; color: inherit;">
          <div class="flex-shrink-0">
           <div class="flex items-center justify-center w-8 h-8 rounded-full" style="background: rgba(110,216,255,0.2);">
            <span class="text-sm font-bold text-neon">3</span>
@@ -97,10 +121,10 @@
          </div>
          <div>
           <p class="font-semibold">Design and Product Track</p>
-          <p class="text-sm text-gray-400">UI/UX Design, Product Management, Product Design, Technical Writing</p>
+          <p class="text-sm text-gray-400">Saturday, 20 June 2026, 10:00 AM - 1:00 PM</p>
          </div>
-        </div>
-        <div class="flex gap-3 p-4 rounded-lg" style="background: rgba(110,216,255,0.05); border: 1px solid rgba(110,216,255,0.15);">
+        </a>
+        <a href="future-builder-series.html#technical-sessions" class="flex gap-3 p-4 rounded-lg" style="background: rgba(110,216,255,0.05); border: 1px solid rgba(110,216,255,0.15); text-decoration: none; color: inherit;">
          <div class="flex-shrink-0">
           <div class="flex items-center justify-center w-8 h-8 rounded-full" style="background: rgba(110,216,255,0.2);">
            <span class="text-sm font-bold text-neon">4</span>
@@ -108,9 +132,31 @@
          </div>
          <div>
           <p class="font-semibold">Infrastructure, Security and Communication Track</p>
-          <p class="text-sm text-gray-400">DevOps & Cloud, and Cybersecurity</p>
+          <p class="text-sm text-gray-400">Sunday, 21 June 2026, 1:00 PM - 4:00 PM</p>
          </div>
-        </div>
+        </a>
+        <a href="future-builder-series.html#technical-sessions" class="flex gap-3 p-4 rounded-lg" style="background: rgba(110,216,255,0.05); border: 1px solid rgba(110,216,255,0.15); text-decoration: none; color: inherit;">
+         <div class="flex-shrink-0">
+          <div class="flex items-center justify-center w-8 h-8 rounded-full" style="background: rgba(110,216,255,0.2);">
+           <span class="text-sm font-bold text-neon">5</span>
+          </div>
+         </div>
+         <div>
+          <p class="font-semibold">Blockchain / Web3 Track</p>
+          <p class="text-sm text-gray-400">Saturday, 27 June 2026, 10:00 AM - 1:00 PM</p>
+         </div>
+        </a>
+        <a href="future-builder-series.html#technical-sessions" class="flex gap-3 p-4 rounded-lg" style="background: rgba(110,216,255,0.05); border: 1px solid rgba(110,216,255,0.15); text-decoration: none; color: inherit;">
+         <div class="flex-shrink-0">
+          <div class="flex items-center justify-center w-8 h-8 rounded-full" style="background: rgba(110,216,255,0.2);">
+           <span class="text-sm font-bold text-neon">6</span>
+          </div>
+         </div>
+         <div>
+          <p class="font-semibold">Career Builder Session</p>
+          <p class="text-sm text-gray-400">Sunday, 28 June 2026, 1:00 PM - 4:00 PM</p>
+         </div>
+        </a>
        </div>
       </div>
 
@@ -143,47 +189,11 @@
       </div>
 
       <!-- CTA Button -->
-      <a href="https://chat.whatsapp.com/LrzmQH68G150NgK3vV0HPy?mode=gi_t" target="_blank" class="glow-btn">Register Now</a>
+      <a href="register-technical-session.html" class="glow-btn">Register for Technical Session →</a>
      </div>
     </section>
 
-    <!-- WHAT YOU'LL LEARN -->
-    <section class="w-full px-6 py-16 max-w-5xl mx-auto">
-     <div class="text-center mb-12">
-      <h2 class="text-2xl sm:text-3xl font-bold">What You'll Gain</h2>
-      <p class="text-gray-400 max-w-2xl mx-auto mt-3">Practical insights and actionable strategies to advance your tech career.</p>
-     </div>
-     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-      <div class="glass-card p-7">
-       <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(110,216,255,0.1);">
-        <i data-lucide="brain" style="width:20px;height:20px;color:#6ED8FF;"></i>
-       </div>
-       <h3 class="text-lg font-bold mb-2">Career Clarity</h3>
-       <p class="text-gray-400 text-sm leading-relaxed">Understand different technology career paths and which specialization aligns with your goals.</p>
-      </div>
-      <div class="glass-card p-7">
-       <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(110,216,255,0.1);">
-        <i data-lucide="rocket" style="width:20px;height:20px;color:#6ED8FF;"></i>
-       </div>
-       <h3 class="text-lg font-bold mb-2">Learning Strategies</h3>
-       <p class="text-gray-400 text-sm leading-relaxed">Proven techniques to accelerate your learning and build skills efficiently.</p>
-      </div>
-      <div class="glass-card p-7">
-       <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(110,216,255,0.1);">
-        <i data-lucide="zap" style="width:20px;height:20px;color:#6ED8FF;"></i>
-       </div>
-       <h3 class="text-lg font-bold mb-2">AI-Powered Growth</h3>
-       <p class="text-gray-400 text-sm leading-relaxed">Leverage AI tools and workflows to stay ahead in an AI-driven tech landscape.</p>
-      </div>
-      <div class="glass-card p-7">
-       <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg" style="background: rgba(110,216,255,0.1);">
-        <i data-lucide="network" style="width:20px;height:20px;color:#6ED8FF;"></i>
-       </div>
-       <h3 class="text-lg font-bold mb-2">Expert Network</h3>
-       <p class="text-gray-400 text-sm leading-relaxed">Connect with industry professionals and build relationships that boost your career.</p>
-      </div>
-     </div>
-    </section>
+    <!-- WHAT YOU'LL LEARN (removed; content available on Future Builder Series page) -->
 
     <!-- PAST EVENTS -->
     <section class="w-full px-6 py-16 max-w-5xl mx-auto">
@@ -227,7 +237,22 @@
        <i data-lucide="calendar" style="width:20px;height:20px;color:#6ED8FF;"></i>
       </div>
       <h3 class="text-xl font-bold mb-2">More Events Coming Soon</h3>
-      <p class="text-gray-400 max-w-2xl mx-auto mb-6">We're constantly planning new workshops, webinars, and networking events. Stay tuned for announcements on specialized tracks, advanced topics, and community meetups.</p>
+      <p class="text-gray-400 max-w-2xl mx-auto mb-6">We're constantly planning new workshops, webinars, and networking events. Below are two upcoming initiatives we will launch soon — dates and prize details will be announced in the community.</p>
+
+      <div class="space-y-4 text-left max-w-3xl mx-auto mb-4">
+      <div class="p-4 rounded-lg" style="background: rgba(110,216,255,0.03); border: 1px solid rgba(110,216,255,0.08);">
+       <h4 class="font-bold mb-1">Builder Sprint — 14-Day Marathon</h4>
+       <p class="text-sm text-gray-400 mb-2">A focused 14-day build challenge where participants pitch a quick idea and build it over two weeks. Participants document daily progress publicly for 14 days. Winners will be judged on idea originality, technical approach, readiness of the build, overall quality, and consistency of documentation. Prize, exact dates, and judging panel will be announced soon.</p>
+       <a href="register-builder-sprint.html" class="glow-btn" style="display:inline-block; margin-top:6px;">Register for Builder Sprint →</a>
+      </div>
+
+      <div class="p-4 rounded-lg" style="background: rgba(110,216,255,0.03); border: 1px solid rgba(110,216,255,0.08);">
+       <h4 class="font-bold mb-1">Future Builder Series — Phase 2</h4>
+       <p class="text-sm text-gray-400 mb-2">The second phase of the Future Builder Series (Develop) — guided learning, accountability cohorts, and deeper implementation workshops. Session schedule and times to be announced.</p>
+       <a href="register-technical-session.html" class="glow-btn" style="display:inline-block; margin-top:6px; background: rgba(110,216,255,0.1); border: 1px solid rgba(110,216,255,0.3); color:#6ED8FF;">Register / Notify me →</a>
+      </div>
+      </div>
+
       <p class="text-sm font-mono text-gray-500">Subscribe to our WhatsApp community to be notified first</p>
      </div>
     </section>
@@ -236,8 +261,9 @@
     <section class="w-full px-6 py-20 max-w-4xl mx-auto text-center">
      <span class="live-badge">Don't Miss Out</span>
      <h2 class="text-3xl sm:text-4xl md:text-5xl font-900 mb-4 leading-tight">Register and Stay <span class="neon-text">Connected</span></h2>
-     <p class="text-gray-400 max-w-xl mx-auto mb-10 leading-relaxed">Join our community today to get early access to new events, exclusive content, and networking opportunities with industry professionals.</p>
-     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+    <p class="text-gray-400 max-w-xl mx-auto mb-10 leading-relaxed">Join our community today to get early access to new events, exclusive content, and networking opportunities with industry professionals.</p>
+     
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
       <a href="https://chat.whatsapp.com/LrzmQH68G150NgK3vV0HPy?mode=gi_t" target="_blank" class="glow-btn">Join WhatsApp Community</a>
       <a href="../index.html" class="glow-btn" style="background: rgba(110,216,255,0.1); border: 1px solid rgba(110,216,255,0.3); color: #6ED8FF;">Explore More →</a>
      </div>

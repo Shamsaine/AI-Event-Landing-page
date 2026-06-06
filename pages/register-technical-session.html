@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Register for the Alteturia Career Discovery: Technical Session (Future Builder Series - Phase 1)">
+  <title>Register — Technical Session | Alteturia</title>
+  <link rel="icon" type="image/png" href="../logo-preview/logo.png">
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+ </head>
+ <body class="h-full">
+  <div class="page-wrapper grid-bg">
+   <nav id="navbar-container"></nav>
+   <div class="app-wrapper">
+    <section class="w-full px-6 pt-28 pb-12 flex flex-col items-center text-center max-w-3xl mx-auto">
+     <span class="live-badge">Register</span>
+     <h1 class="text-3xl font-900 mb-4">Career discovery: Technical session</h1>
+     <p class="text-gray-400 max-w-2xl mb-6">Register to join the technical session of the Alteturia Future Builder Series (Phase 1). Complete the form below and we'll confirm your registration.</p>
+    </section>
+
+    <section class="w-full px-6 py-12 max-w-3xl mx-auto">
+     <div class="glass-card p-8">
+      <div class="mb-8 space-y-4">
+       <h2 class="text-2xl font-bold">Technical Session Registration</h2>
+       <p class="text-gray-400 leading-relaxed">Reserve your seat in the Technical Session of the Future Builder Series. Tell us your experience, your preferred track, and what outcome you want from the session.</p>
+       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="rounded-2xl border border-[#123] bg-[#06111f] p-4">
+         <h3 class="font-semibold text-white mb-2">Choose a track</h3>
+         <p class="text-sm text-gray-400">Pick the session that matches your current learning goals and career path.</p>
+        </div>
+        <div class="rounded-2xl border border-[#123] bg-[#06111f] p-4">
+         <h3 class="font-semibold text-white mb-2">Share your goals</h3>
+         <p class="text-sm text-gray-400">Provide your session expectations so we can match you with the right learning experience.</p>
+        </div>
+       </div>
+      </div>
+
+      <form id="registration-form" data-sheet-webhook="https://script.google.com/macros/s/AKfycbwN-cZG0aPwJUD0Ff-pFGpo4zpY6Ojzpbm6x5nGOuLxmkmou8wVvJx1e-2WsYfW7O4K3Q/exec" data-whatsapp-group="https://chat.whatsapp.com/LrzmQH68G150NgK3vV0HPy?mode=gi_t">
+       <input type="hidden" id="reg-interest" value="Technical Session - Future Builder Series">
+       <div class="grid grid-cols-1 gap-4">
+        <div class="grid gap-4 sm:grid-cols-2">
+         <div>
+          <label class="text-sm text-gray-300">Full name</label>
+          <input id="reg-full-name" type="text" required class="w-full mt-2 p-3 rounded-md bg-[#071022] border border-[#123]" placeholder="Your full name">
+         </div>
+         <div>
+          <label class="text-sm text-gray-300">Email</label>
+          <input id="reg-email" type="email" required class="w-full mt-2 p-3 rounded-md bg-[#071022] border border-[#123]" placeholder="you@example.com">
+         </div>
+        </div>
+
+        <div>
+         <label class="text-sm text-gray-300">Phone number</label>
+         <input id="reg-phone" type="tel" required class="w-full mt-2 p-3 rounded-md bg-[#071022] border border-[#123]" placeholder="+234...">
+        </div>
+
+        <div>
+         <label class="text-sm text-gray-300">Location</label>
+         <input id="reg-location" type="text" required class="w-full mt-2 p-3 rounded-md bg-[#071022] border border-[#123]" placeholder="City, Country">
+        </div>
+
+        <div>
+         <label class="text-sm text-gray-300">Session of interest</label>
+         <select id="reg-session" required class="w-full mt-2 p-3 rounded-md bg-[#071022] border border-[#123]">
+          <option value="">Select a session</option>
+          <option value="Software Development Track">Software Development Track</option>
+          <option value="Data and Emerging Technologies Track">Data and Emerging Technologies Track</option>
+          <option value="Design and Product Track">Design and Product Track</option>
+          <option value="Infrastructure, Security and Communication Track">Infrastructure, Security and Communication Track</option>
+          <option value="Blockchain / Web3 Track">Blockchain / Web3 Track</option>
+          <option value="Career Builder Session">Career Builder Session</option>
+         </select>
+        </div>
+
+        <div>
+         <button type="submit" class="glow-btn w-full">Register for Technical Session</button>
+         <p id="registration-form-status" class="text-sm mt-3 text-gray-400"></p>
+        </div>
+       </div>
+      </form>
+     </div>
+    </section>
+
+   </div>
+   <footer id="footer-container"></footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="../assets/js/script.js"></script>
+  <script>
+    async function loadComponents(){
+      try{
+        const navbarRes = await fetch('../components/navbar.html');
+        document.getElementById('navbar-container').innerHTML = await navbarRes.text();
+        const footerRes = await fetch('../components/footer.html');
+        document.getElementById('footer-container').innerHTML = await footerRes.text();
+        applyConfig(defaultConfig);
+        initFormHandlers();
+        initRouteLinks();
+        initNavigation();
+        window.lucide.createIcons();
+      }catch(e){console.error(e)}
+    }
+    loadComponents();
+  </script>
+ </body>
+</html>

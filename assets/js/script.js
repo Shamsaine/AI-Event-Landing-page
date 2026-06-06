@@ -86,7 +86,6 @@ const defaultConfig = {
   registration_sheet_webhook_url: 'https://script.google.com/macros/s/AKfycbyUoFXumBmKYrgKrWKG721jcLFKqjw2QLjkNQRrC80erbSjndGEN427C8sqZAAoEbjD/exec',
   contact_sheet_webhook_url: 'https://script.google.com/macros/s/AKfycbyUoFXumBmKYrgKrWKG721jcLFKqjw2QLjkNQRrC80erbSjndGEN427C8sqZAAoEbjD/exec',
   whatsapp_group_url: 'https://chat.whatsapp.com/LrzmQH68G150NgK3vV0HPy?mode=gi_t',
-  contact_phone: '+2348087532090',
   logo_image_url: 'https://drive.google.com/file/d/1XSe6_1MyGamTZiMGA94nvjWiTXkWVXKb/view?usp=sharing',
   logo_fallback_local: '',
   background_color: '#030816',
@@ -239,7 +238,10 @@ function initRouteLinks() {
   const routes = {
     home: isInsidePagesFolder ? '../index.html' : 'index.html',
     about: isInsidePagesFolder ? 'about.html' : 'pages/about.html',
-    events: isInsidePagesFolder ? 'events.html' : 'pages/events.html'
+    events: isInsidePagesFolder ? 'events.html' : 'pages/events.html',
+    futureBuilder: isInsidePagesFolder ? 'future-builder-series.html' : 'pages/future-builder-series.html',
+    registerBuilderSprint: isInsidePagesFolder ? 'register-builder-sprint.html' : 'pages/register-builder-sprint.html',
+    registerTechnicalSession: isInsidePagesFolder ? 'register-technical-session.html' : 'pages/register-technical-session.html'
   };
 
   document.querySelectorAll('[data-route]').forEach(link => {
@@ -273,22 +275,37 @@ async function handleRegistrationSubmit(event) {
   const sheetWebhook = (this.dataset.sheetWebhook || '').trim();
   const whatsappGroup = (this.dataset.whatsappGroup || '').trim();
 
+  const getValue = id => (document.getElementById(id) || {}).value?.trim() || '';
   const formData = {
-    full_name: (document.getElementById('reg-full-name') || {}).value?.trim() || '',
-    phone_number: (document.getElementById('reg-phone') || {}).value?.trim() || '',
-    email_address: (document.getElementById('reg-email') || {}).value?.trim() || '',
-    age_group: (document.getElementById('reg-age-group') || {}).value || '',
-    education_level: (document.getElementById('reg-education') || {}).value || '',
-    location: (document.getElementById('reg-location') || {}).value?.trim() || '',
-    area_of_interest: (document.getElementById('reg-interest') || {}).value || '',
-    tech_proficiency: (document.getElementById('reg-proficiency') || {}).value || '',
-    referral_source: (document.getElementById('reg-referral') || {}).value || ''
+    full_name: getValue('reg-full-name'),
+    phone_number: getValue('reg-phone'),
+    email_address: getValue('reg-email'),
+    age_group: getValue('reg-age-group'),
+    location: getValue('reg-location'),
+    experience_level: getValue('reg-experience'),
+    area_of_interest: getValue('reg-interest'),
+    session_of_interest: getValue('reg-session'),
+    referral_source: getValue('reg-referral'),
+    goal: getValue('reg-goal'),
+    platform: getValue('reg-platform'),
+    handle: getValue('reg-handle'),
+    idea_summary: getValue('reg-idea-summary'),
+    progress_plan: getValue('reg-progress-plan')
   };
 
-  const isComplete = Object.values(formData).every(v => typeof v === 'string' && v.length > 0);
-  if (!isComplete) {
+  const requiredFields = [
+    { key: 'full_name', label: 'Full name' },
+    { key: 'phone_number', label: 'Phone number' },
+    { key: 'email_address', label: 'Email' },
+    { key: 'location', label: 'Location' },
+    { key: 'area_of_interest', label: 'Event selection' },
+    { key: 'session_of_interest', label: 'Session selection' }
+  ];
+
+  const missingField = requiredFields.find(field => !formData[field.key]);
+  if (missingField) {
     if (statusText) {
-      statusText.textContent = 'Please complete all fields before submitting.';
+      statusText.textContent = `Please complete the ${missingField.label} field before submitting.`;
       statusText.style.color = '#f87171';
     }
     return;
@@ -316,19 +333,33 @@ async function handleRegistrationSubmit(event) {
 
     this.reset();
     if (statusText) {
-      statusText.textContent = 'Registration successful. Redirecting you to our WhatsApp group...';
+      statusText.innerHTML = '✓ Registration successful! Your details have been saved. <br>Redirecting to our WhatsApp community...';
       statusText.style.color = '#6ED8FF';
+      statusText.style.fontSize = '16px';
+      statusText.style.fontWeight = '500';
+      statusText.style.padding = '12px';
+      statusText.style.backgroundColor = '#6ED8FF20';
+      statusText.style.borderRadius = '8px';
+      statusText.style.marginTop = '16px';
+      statusText.style.border = '1px solid #6ED8FF40';
     }
 
     if (/^https?:\/\//i.test(whatsappGroup)) {
       setTimeout(() => {
         window.location.href = whatsappGroup;
-      }, 1600);
+      }, 2500);
     }
   } catch (error) {
     if (statusText) {
-      statusText.textContent = 'Registration failed. Please try again in a moment.';
+      statusText.textContent = '✗ Registration failed. Please try again.';
       statusText.style.color = '#f87171';
+      statusText.style.fontSize = '16px';
+      statusText.style.fontWeight = '500';
+      statusText.style.padding = '12px';
+      statusText.style.backgroundColor = '#f8717120';
+      statusText.style.borderRadius = '8px';
+      statusText.style.marginTop = '16px';
+      statusText.style.border = '1px solid #f8717140';
     }
   } finally {
     if (submitButton) submitButton.disabled = false;
@@ -382,16 +413,46 @@ async function handleContactSubmit(event) {
         body: payload
       });
 
-      setStatus('Your message was received successfully.', true);
+      if (statusText) {
+        statusText.innerHTML = '✓ Message received! Thank you for reaching out.<br>Check your email for confirmation with our WhatsApp community link.';
+        statusText.style.color = '#6ED8FF';
+        statusText.style.fontSize = '15px';
+        statusText.style.fontWeight = '500';
+        statusText.style.padding = '12px';
+        statusText.style.backgroundColor = '#6ED8FF20';
+        statusText.style.borderRadius = '8px';
+        statusText.style.marginTop = '12px';
+        statusText.style.border = '1px solid #6ED8FF40';
+      }
       if (senderInput) senderInput.value = '';
       if (messageInput) messageInput.value = '';
     } else {
       openMailClient();
-      setStatus('Opened your email app to send the message.', true);
+      if (statusText) {
+        statusText.innerHTML = '✓ Email app opened. Your message is ready to send.';
+        statusText.style.color = '#6ED8FF';
+        statusText.style.fontSize = '15px';
+        statusText.style.fontWeight = '500';
+        statusText.style.padding = '12px';
+        statusText.style.backgroundColor = '#6ED8FF20';
+        statusText.style.borderRadius = '8px';
+        statusText.style.marginTop = '12px';
+        statusText.style.border = '1px solid #6ED8FF40';
+      }
     }
   } catch (error) {
     openMailClient();
-    setStatus('Sheet submit failed, opened email app as fallback.', false);
+    if (statusText) {
+      statusText.textContent = '✗ Error submitting form, opened email app as fallback.';
+      statusText.style.color = '#f87171';
+      statusText.style.fontSize = '15px';
+      statusText.style.fontWeight = '500';
+      statusText.style.padding = '12px';
+      statusText.style.backgroundColor = '#f8717120';
+      statusText.style.borderRadius = '8px';
+      statusText.style.marginTop = '12px';
+      statusText.style.border = '1px solid #f8717140';
+    }
   } finally {
     if (submitButton) submitButton.disabled = false;
   }
@@ -427,6 +488,7 @@ function initLucide() {
 function initSpecializationsGrid(gridId = 'specializations-grid', limit = null) {
   const grid = document.getElementById(gridId);
   if (!grid) return;
+  if (grid.children.length > 0) return;
   
   grid.innerHTML = '';
   const specializationList = Number.isInteger(limit) ? specializations.slice(0, limit) : specializations;

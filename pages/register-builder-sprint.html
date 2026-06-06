@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Register for the Alteturia Builder Sprint — 14-Day Marathon">
+  <title>Register — Builder Sprint | Alteturia</title>
+  <link rel="icon" type="image/png" href="../logo-preview/logo.png">
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+ </head>
+ <body class="h-full">
+  <div class="page-wrapper grid-bg">
+   <nav id="navbar-container"></nav>
+   <div class="app-wrapper">
+    <section class="w-full px-6 pt-28 pb-12 flex flex-col items-center text-center max-w-3xl mx-auto">
+     <span class="live-badge">Register</span>
+     <h1 class="text-3xl font-900 mb-4">Builder Sprint — 14-Day Marathon</h1>
+     <p class="text-gray-400 max-w-2xl mb-6">Pitch a quick idea and build it in 14 days while documenting progress daily. Winners judged on idea originality, approach, technical readiness, build quality, and documentation consistency. Prize details and dates will be announced.</p>
+    </section>
+
+    <section class="w-full px-6 py-12 max-w-3xl mx-auto">
+     <div class="glass-card p-8">
+      <div class="mb-8 space-y-4">
+       <h2 class="text-2xl font-bold">Builder Sprint Registration</h2>
+       <p class="text-gray-400 leading-relaxed">Apply for the 14-Day Builder Sprint with a clear project idea, progress plan, and public profile so we can help you build, share, and grow with the Alteturia community.</p>
+       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="rounded-2xl border border-[#123] bg-[#06111f] p-4">
+         <h3 class="font-semibold text-white mb-2">What we need</h3>
+         <p class="text-sm text-gray-400">A short project idea, your progress platform, and a handle where the community can follow your work.</p>
+        </div>
+        <div class="rounded-2xl border border-[#123] bg-[#06111f] p-4">
+         <h3 class="font-semibold text-white mb-2">Why it matters</h3>
+         <p class="text-sm text-gray-400">We want builders with practical focus and a plan for sharing progress publicly over the 14-day challenge.</p>
+        </div>
+       </div>
+      </div>
+
+      <form id="registration-form" data-sheet-webhook="https://script.google.com/macros/s/AKfycbwN-cZG0aPwJUD0Ff-pFGpo4zpY6Ojzpbm6x5nGOuLxmkmou8wVvJx1e-2WsYfW7O4K3Q/exec" data-whatsapp-group="https://chat.whatsapp.com/LrzmQH68G150NgK3vV0HPy?mode=gi_t">
+       <input type="hidden" id="reg-interest" value="Builder Sprint - 14-Day Marathon">
+       <input type="hidden" id="reg-session" value="Builder Sprint">
+       <input type="hidden" id="reg-goal" value="Build a focused project, document progress, and receive community feedback">
+       <div class="grid grid-cols-1 gap-4">
+        <div class="grid gap-4 sm:grid-cols-2">
+         <div>
+          <label class="text-sm text-gray-300">Full name</label>
+          <input id="reg-full-name" type="text" required class="w-full mt-2 p-3 rounded-md bg-[#071022] border border-[#123]" placeholder="Your full name">
+         </div>
+         <div>
+          <label class="text-sm text-gray-300">Email</label>
+          <input id="reg-email" type="email" required class="w-full mt-2 p-3 rounded-md bg-[#071022] border border-[#123]" placeholder="you@example.com">
+         </div>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+         <div>
+          <label class="text-sm text-gray-300">Phone number</label>
+          <input id="reg-phone" type="tel" required class="w-full mt-2 p-3 rounded-md bg-[#071022] border border-[#123]" placeholder="+234...">
+         </div>
+         <div>
+          <label class="text-sm text-gray-300">Location</label>
+          <input id="reg-location" type="text" required class="w-full mt-2 p-3 rounded-md bg-[#071022] border border-[#123]" placeholder="City, Country">
+         </div>
+        </div>
+
+        <div>
+         <label class="text-sm text-gray-300">Area of expertise</label>
+         <select id="reg-experience" required class="w-full mt-2 p-3 rounded-md bg-[#071022] border border-[#123]">
+          <option value="">Select area of expertise</option>
+          <option value="Frontend Development">Frontend Development</option>
+          <option value="Backend Development">Backend Development</option>
+          <option value="Full Stack Development">Full Stack Development</option>
+          <option value="Data Science & AI/ML">Data Science & AI/ML</option>
+          <option value="Product Design">Product Design</option>
+          <option value="Cybersecurity">Cybersecurity</option>
+          <option value="DevOps">DevOps</option>
+          <option value="Other">Other</option>
+         </select>
+        </div>
+
+        <div>
+         <label class="text-sm text-gray-300">Project idea summary</label>
+         <textarea id="reg-idea-summary" required rows="4" class="w-full mt-2 p-3 rounded-md bg-[#071022] border border-[#123]" placeholder="Describe the project you plan to build in 1–2 sentences"></textarea>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+         <div>
+          <label class="text-sm text-gray-300">How will you share progress?</label>
+          <select id="reg-platform" required class="w-full mt-2 p-3 rounded-md bg-[#071022] border border-[#123]">
+           <option value="">Select progress channel</option>
+           <option value="LinkedIn">LinkedIn</option>
+           <option value="Twitter">Twitter</option>
+           <option value="GitHub">GitHub</option>
+           <option value="Telegram">Telegram</option>
+           <option value="Other">Other</option>
+          </select>
+         </div>
+         <div>
+          <label class="text-sm text-gray-300">Profile handle or public link</label>
+          <input id="reg-handle" type="text" required class="w-full mt-2 p-3 rounded-md bg-[#071022] border border-[#123]" placeholder="e.g., @yourname or linkedin.com/in/yourname">
+         </div>
+        </div>
+
+        <div>
+         <label class="text-sm text-gray-300">How did you hear about Alteturia?</label>
+         <input id="reg-referral" type="text" required class="w-full mt-2 p-3 rounded-md bg-[#071022] border border-[#123]" placeholder="e.g., WhatsApp, Instagram, friend, search">
+        </div>
+        <div>
+         <button type="submit" class="glow-btn w-full">Register for Builder Sprint</button>
+         <p id="registration-form-status" class="text-sm mt-3 text-gray-400"></p>
+        </div>
+       </div>
+      </form>
+     </div>
+    </section>
+
+   </div>
+   <footer id="footer-container"></footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="../assets/js/script.js"></script>
+  <script>
+    async function loadComponents(){
+      try{
+        const navbarRes = await fetch('../components/navbar.html');
+        document.getElementById('navbar-container').innerHTML = await navbarRes.text();
+        const footerRes = await fetch('../components/footer.html');
+        document.getElementById('footer-container').innerHTML = await footerRes.text();
+        applyConfig(defaultConfig);
+        initFormHandlers();
+        initRouteLinks();
+        initNavigation();
+        window.lucide.createIcons();
+      }catch(e){console.error(e)}
+    }
+    loadComponents();
+  </script>
+ </body>
+</html>
+
