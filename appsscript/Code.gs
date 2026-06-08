@@ -12,7 +12,7 @@
  *  - Who has access: Anyone (or Anyone with link)
  */
 
-const SPREADSHEET_ID = "1-T8wM7NVnfqzDZJrX19V8wQZ07X0AryZLIJ4E2i9sM4";
+const SPREADSHEET_ID = "1ytXrTMc1yS7YppqbKO5bV_9RXWcJ81Vcfy0IQ7tyNyc";
 const DEFAULT_SOURCE = "alteturia-event-page";
 const DEFAULT_WHATSAPP_GROUP_URL = "https://chat.whatsapp.com/LrzmQH68G150NgK3vV0HPy?mode=gi_t";
 const ALTETURIA_EMAIL = "alteturiaofficial@gmail.com";

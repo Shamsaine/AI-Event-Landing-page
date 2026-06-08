@@ -211,6 +211,26 @@ function applyConfig(config) {
   document.body.style.fontFamily = `${font}, Outfit, sans-serif`;
 }
 
+// Utility functions for validation
+function validateEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+function validatePhone(phone) {
+  const phoneRegex = /^[\d\s\-\+\(\)]{7,}$/;
+  return phoneRegex.test(phone.replace(/\s/g, ''));
+}
+
+// Utility function to set form status message
+function setFormStatus(statusElement, message, isSuccess) {
+  if (!statusElement) return;
+  statusElement.textContent = message;
+  statusElement.className = isSuccess 
+    ? 'form-status form-status--success' 
+    : 'form-status form-status--error';
+}
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
   applyConfig(defaultConfig);
@@ -218,6 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFormHandlers();
   initScrollAnimations();
   initLucide();
+  loadComponents();
 });
 
 // Navigation Handler
@@ -250,6 +271,31 @@ function initRouteLinks() {
       link.setAttribute('href', routes[routeName]);
     }
   });
+}
+
+// Component Loading (consolidated)
+async function loadComponents() {
+  try {
+    const isInsidePagesFolder = window.location.pathname.includes('/pages/');
+    const navbarPath = isInsidePagesFolder ? '../components/navbar.html' : 'components/navbar.html';
+    const footerPath = isInsidePagesFolder ? '../components/footer.html' : 'components/footer.html';
+
+    const navbarContainer = document.getElementById('navbar-container');
+    const footerContainer = document.getElementById('footer-container');
+
+    if (navbarContainer) {
+      const navbarRes = await fetch(navbarPath);
+      navbarContainer.innerHTML = await navbarRes.text();
+      initRouteLinks();
+    }
+
+    if (footerContainer) {
+      const footerRes = await fetch(footerPath);
+      footerContainer.innerHTML = await footerRes.text();
+    }
+  } catch (error) {
+    console.error('Error loading components:', error);
+  }
 }
 
 // Registration Form Handler
@@ -302,12 +348,22 @@ async function handleRegistrationSubmit(event) {
     { key: 'session_of_interest', label: 'Session selection' }
   ];
 
+  // Validate required fields
   const missingField = requiredFields.find(field => !formData[field.key]);
   if (missingField) {
-    if (statusText) {
-      statusText.textContent = `Please complete the ${missingField.label} field before submitting.`;
-      statusText.style.color = '#f87171';
-    }
+    setFormStatus(statusText, `Please complete the ${missingField.label} field before submitting.`, false);
+    return;
+  }
+
+  // Validate email format
+  if (!validateEmail(formData.email_address)) {
+    setFormStatus(statusText, 'Please enter a valid email address.', false);
+    return;
+  }
+
+  // Validate phone format
+  if (!validatePhone(formData.phone_number)) {
+    setFormStatus(statusText, 'Please enter a valid phone number.', false);
     return;
   }
 
@@ -332,17 +388,7 @@ async function handleRegistrationSubmit(event) {
     });
 
     this.reset();
-    if (statusText) {
-      statusText.innerHTML = '✓ Registration successful! Your details have been saved. <br>Redirecting to our WhatsApp community...';
-      statusText.style.color = '#6ED8FF';
-      statusText.style.fontSize = '16px';
-      statusText.style.fontWeight = '500';
-      statusText.style.padding = '12px';
-      statusText.style.backgroundColor = '#6ED8FF20';
-      statusText.style.borderRadius = '8px';
-      statusText.style.marginTop = '16px';
-      statusText.style.border = '1px solid #6ED8FF40';
-    }
+    setFormStatus(statusText, '✓ Registration successful! Your details have been saved.\nRedirecting to our WhatsApp community...', true);
 
     if (/^https?:\/\//i.test(whatsappGroup)) {
       setTimeout(() => {
@@ -350,17 +396,7 @@ async function handleRegistrationSubmit(event) {
       }, 2500);
     }
   } catch (error) {
-    if (statusText) {
-      statusText.textContent = '✗ Registration failed. Please try again.';
-      statusText.style.color = '#f87171';
-      statusText.style.fontSize = '16px';
-      statusText.style.fontWeight = '500';
-      statusText.style.padding = '12px';
-      statusText.style.backgroundColor = '#f8717120';
-      statusText.style.borderRadius = '8px';
-      statusText.style.marginTop = '16px';
-      statusText.style.border = '1px solid #f8717140';
-    }
+    setFormStatus(statusText, '✗ Registration failed. Please try again.', false);
   } finally {
     if (submitButton) submitButton.disabled = false;
   }
@@ -379,12 +415,6 @@ async function handleContactSubmit(event) {
   const message = messageInput?.value?.trim() || '';
 
   if (!sender || !message) return;
-
-  const setStatus = (text, isSuccess) => {
-    if (!statusText) return;
-    statusText.textContent = text;
-    statusText.style.color = isSuccess ? '#6ED8FF' : '#f87171';
-  };
 
   const subject = encodeURIComponent('New website message from ' + sender);
   const body = encodeURIComponent('Sender: ' + sender + '\n\nMessage:\n' + message);
@@ -413,46 +443,16 @@ async function handleContactSubmit(event) {
         body: payload
       });
 
-      if (statusText) {
-        statusText.innerHTML = '✓ Message received! Thank you for reaching out.<br>Check your email for confirmation with our WhatsApp community link.';
-        statusText.style.color = '#6ED8FF';
-        statusText.style.fontSize = '15px';
-        statusText.style.fontWeight = '500';
-        statusText.style.padding = '12px';
-        statusText.style.backgroundColor = '#6ED8FF20';
-        statusText.style.borderRadius = '8px';
-        statusText.style.marginTop = '12px';
-        statusText.style.border = '1px solid #6ED8FF40';
-      }
+      setFormStatus(statusText, '✓ Message received! Thank you for reaching out.\nCheck your email for confirmation with our WhatsApp community link.', true);
       if (senderInput) senderInput.value = '';
       if (messageInput) messageInput.value = '';
     } else {
       openMailClient();
-      if (statusText) {
-        statusText.innerHTML = '✓ Email app opened. Your message is ready to send.';
-        statusText.style.color = '#6ED8FF';
-        statusText.style.fontSize = '15px';
-        statusText.style.fontWeight = '500';
-        statusText.style.padding = '12px';
-        statusText.style.backgroundColor = '#6ED8FF20';
-        statusText.style.borderRadius = '8px';
-        statusText.style.marginTop = '12px';
-        statusText.style.border = '1px solid #6ED8FF40';
-      }
+      setFormStatus(statusText, '✓ Email app opened. Your message is ready to send.', true);
     }
   } catch (error) {
     openMailClient();
-    if (statusText) {
-      statusText.textContent = '✗ Error submitting form, opened email app as fallback.';
-      statusText.style.color = '#f87171';
-      statusText.style.fontSize = '15px';
-      statusText.style.fontWeight = '500';
-      statusText.style.padding = '12px';
-      statusText.style.backgroundColor = '#f8717120';
-      statusText.style.borderRadius = '8px';
-      statusText.style.marginTop = '12px';
-      statusText.style.border = '1px solid #f8717140';
-    }
+    setFormStatus(statusText, '✗ Error submitting form, opened email app as fallback.', false);
   } finally {
     if (submitButton) submitButton.disabled = false;
   }
