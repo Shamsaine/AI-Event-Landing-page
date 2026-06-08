@@ -261,8 +261,8 @@ function initRouteLinks() {
     about: isInsidePagesFolder ? 'about.html' : 'pages/about.html',
     events: isInsidePagesFolder ? 'events.html' : 'pages/events.html',
     futureBuilder: isInsidePagesFolder ? 'future-builder-series.html' : 'pages/future-builder-series.html',
-    registerBuilderSprint: isInsidePagesFolder ? 'register-builder-sprint.html' : 'pages/register-builder-sprint.html',
-    registerTechnicalSession: isInsidePagesFolder ? 'register-technical-session.html' : 'pages/register-technical-session.html'
+    registerBuilderSprint: 'https://chat.whatsapp.com/I25lCfSnBwRIOGW9hdFDrK',
+    registerTechnicalSession: 'https://chat.whatsapp.com/LrzmQH68G150NgK3vV0HPy?mode=gi_t'
   };
 
   document.querySelectorAll('[data-route]').forEach(link => {
@@ -319,7 +319,9 @@ async function handleRegistrationSubmit(event) {
   const statusText = document.getElementById('registration-form-status');
   const submitButton = this.querySelector('button[type="submit"]');
   const sheetWebhook = (this.dataset.sheetWebhook || '').trim();
-  const whatsappGroup = (this.dataset.whatsappGroup || '').trim();
+
+  // Prefer explicit whatsappGroup on the form. If missing, fall back to global config.
+  const whatsappGroup = (this.dataset.whatsappGroup || '').trim() || defaultConfig.whatsapp_group_url;
 
   const getValue = id => (document.getElementById(id) || {}).value?.trim() || '';
   const formData = {
@@ -339,14 +341,17 @@ async function handleRegistrationSubmit(event) {
     progress_plan: getValue('reg-progress-plan')
   };
 
+  // Required fields vary per registration page.
+  // Validate only the fields that actually exist in the current DOM to avoid false "selection" errors.
   const requiredFields = [
-    { key: 'full_name', label: 'Full name' },
-    { key: 'phone_number', label: 'Phone number' },
-    { key: 'email_address', label: 'Email' },
-    { key: 'location', label: 'Location' },
-    { key: 'area_of_interest', label: 'Event selection' },
-    { key: 'session_of_interest', label: 'Session selection' }
-  ];
+    { key: 'full_name', label: 'Full name', elementId: 'reg-full-name' },
+    { key: 'phone_number', label: 'Phone number', elementId: 'reg-phone' },
+    { key: 'email_address', label: 'Email', elementId: 'reg-email' },
+    { key: 'location', label: 'Location', elementId: 'reg-location' },
+    { key: 'area_of_interest', label: 'Event selection', elementId: 'reg-interest' },
+    { key: 'session_of_interest', label: 'Session selection', elementId: 'reg-session' }
+  ].filter(field => !!document.getElementById(field.elementId));
+
 
   // Validate required fields
   const missingField = requiredFields.find(field => !formData[field.key]);
@@ -390,11 +395,16 @@ async function handleRegistrationSubmit(event) {
     this.reset();
     setFormStatus(statusText, '✓ Registration successful! Your details have been saved.\nRedirecting to our WhatsApp community...', true);
 
-    if (/^https?:\/\//i.test(whatsappGroup)) {
-      setTimeout(() => {
-        window.location.href = whatsappGroup;
-      }, 2500);
+    // Only redirect if whatsappGroup is explicitly provided by the form/page.
+    // Prevent accidental redirects when whatsappGroup is missing/undefined.
+    if (whatsappGroup) {
+      if (/^https?:\/\//i.test(whatsappGroup)) {
+        setTimeout(() => {
+          window.location.href = whatsappGroup;
+        }, 2500);
+      }
     }
+
   } catch (error) {
     setFormStatus(statusText, '✗ Registration failed. Please try again.', false);
   } finally {
