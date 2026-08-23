@@ -121,11 +121,16 @@
             <section class="lp-section"><span class="launch-pad-kicker">Leaderboard</span>
                 <h2 class="lp-display">Who's putting in the work?</h2>
                 <p class="lp-section-intro mb-7">Track participant progress throughout Launch Pad 2026.</p>
-                <div class="lp-leaderboard">
-                    <div class="lp-tabs"><span class="lp-tab">Learning Sprint</span><span class="lp-tab">Builder
-                            Sprint</span></div>
-                    <div class="lp-empty"><strong>The journey hasn't started yet.</strong>
-                        <p>Once Launch Pad begins, participant progress will appear here.</p>
+                <div id="launch-pad-leaderboard" class="lp-leaderboard" data-leaderboard-webhook="">
+                    <div class="lp-tabs" role="tablist" aria-label="Leaderboard views">
+                        <button class="lp-tab is-active" type="button" data-leaderboard-view="general">General</button>
+                        <button class="lp-tab" type="button" data-leaderboard-view="learning">Learning Sprint</button>
+                        <button class="lp-tab" type="button" data-leaderboard-view="builder">Builder Sprint</button>
+                    </div>
+                    <div data-leaderboard-content aria-live="polite">
+                        <div class="lp-empty"><strong>The journey hasn't started yet.</strong>
+                            <p>Once Launch Pad begins, participant progress will appear here.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -136,7 +141,7 @@
                     <p class="mb-6">Choose one track. The form will show only the questions relevant to your 30-day
                         journey.</p>
                     <form id="launch-pad-registration-form"
-                        data-sheet-webhook="https://script.google.com/macros/s/AKfycbyUoFXumBmKYrgKrWKG721jcLFKqjw2QLjkNQRrC80erbSjndGEN427C8sqZAAoEbjD/exec">
+                        data-sheet-webhook="https://script.google.com/macros/s/AKfycbxmOVrxTzvqzJMwBhEmYlKLGpZ9GIUeDJgstRe9i6ikSZgJuIObtLXfkQcJgibrQVRzQA/exec">
                         <input type="hidden" id="reg-interest" value="Launch Pad 2026"><input type="hidden"
                             id="reg-session" value="Learning Sprint">
                         <div class="grid gap-4">
