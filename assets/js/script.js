@@ -236,6 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
   applyConfig(defaultConfig);
   initNavigation();
   initFormHandlers();
+  initLaunchPadRegistration();
   initScrollAnimations();
   initLucide();
   loadComponents();
@@ -248,19 +249,23 @@ function initNavigation() {
   
   navLinks.forEach(link => {
     const href = link.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+    const isChallengeRoute = window.location.pathname.includes('/pages/challenges/') && link.dataset.route === 'challenges';
+    if (href === currentPage || (currentPage === '' && href === 'index.html') || isChallengeRoute) {
       link.classList.add('active');
     }
   });
 }
 
 function initRouteLinks() {
-  const isInsidePagesFolder = window.location.pathname.includes('/pages/');
+  const path = window.location.pathname;
+  const isChallengePage = path.includes('/pages/challenges/');
+  const isInsidePagesFolder = path.includes('/pages/') && !isChallengePage;
   const routes = {
-    home: isInsidePagesFolder ? '../index.html' : 'index.html',
-    about: isInsidePagesFolder ? 'about.html' : 'pages/about.html',
-    events: isInsidePagesFolder ? 'events.html' : 'pages/events.html',
-    futureBuilder: isInsidePagesFolder ? 'future-builder-series.html' : 'pages/future-builder-series.html',
+    home: isChallengePage ? '../../index.html' : (isInsidePagesFolder ? '../index.html' : 'index.html'),
+    about: isChallengePage ? '../about.html' : (isInsidePagesFolder ? 'about.html' : 'pages/about.html'),
+    events: isChallengePage ? '../events.html' : (isInsidePagesFolder ? 'events.html' : 'pages/events.html'),
+    futureBuilder: isChallengePage ? '../future-builder-series.html' : (isInsidePagesFolder ? 'future-builder-series.html' : 'pages/future-builder-series.html'),
+    challenges: isChallengePage ? 'index.html' : (isInsidePagesFolder ? 'challenges/index.html' : 'pages/challenges/index.html'),
     registerBuilderSprint: 'https://chat.whatsapp.com/I25lCfSnBwRIOGW9hdFDrK',
     registerTechnicalSession: 'https://chat.whatsapp.com/LrzmQH68G150NgK3vV0HPy?mode=gi_t'
   };
@@ -273,12 +278,60 @@ function initRouteLinks() {
   });
 }
 
+function initLaunchPadRegistration() {
+  const form = document.getElementById('launch-pad-registration-form');
+  if (!form) return;
+  const track = document.getElementById('reg-track');
+  const learningFields = document.querySelector('[data-track-fields="learning"]');
+  const builderFields = document.querySelector('[data-track-fields="builder"]');
+  const heading = document.getElementById('launch-pad-form-heading');
+  const platform = document.getElementById('reg-platform');
+  const profileField = document.querySelector('[data-platform-profile]');
+  const profileLabel = document.getElementById('reg-profile-label');
+  const profileInput = document.getElementById('reg-handle');
+  const syncTrack = () => {
+    const isBuilder = track && track.value === 'Builder Sprint';
+    const sessionField = document.getElementById('reg-session');
+    if (sessionField) sessionField.value = isBuilder ? 'Builder Sprint' : 'Learning Sprint';
+    if (learningFields) learningFields.hidden = isBuilder;
+    if (builderFields) builderFields.hidden = !isBuilder;
+    document.querySelectorAll('[data-track-required]').forEach(field => {
+      field.required = field.closest('[hidden]') === null;
+    });
+    if (heading) heading.textContent = isBuilder ? 'Builder Sprint registration' : 'Learning Sprint registration';
+  };
+  track?.addEventListener('change', syncTrack);
+  const syncPlatform = () => {
+    const labels = {
+      'X / Twitter': ['X / Twitter handle', '@yourhandle'],
+      LinkedIn: ['LinkedIn profile link', 'linkedin.com/in/yourname'],
+      GitHub: ['GitHub username or profile link', 'github.com/yourname'],
+      Instagram: ['Instagram handle', '@yourhandle'],
+      Other: ['Platform name and public profile or handle', 'e.g., TikTok @yourname']
+    };
+    const details = labels[platform?.value];
+    if (profileField) profileField.hidden = !details;
+    if (profileInput) {
+      profileInput.required = !!details;
+      profileInput.value = details ? profileInput.value : '';
+      profileInput.placeholder = details ? details[1] : '';
+    }
+    if (profileLabel && details) profileLabel.textContent = details[0];
+  };
+  platform?.addEventListener('change', syncPlatform);
+  syncTrack();
+  syncPlatform();
+}
+
 // Component Loading (consolidated)
 async function loadComponents() {
   try {
-    const isInsidePagesFolder = window.location.pathname.includes('/pages/');
-    const navbarPath = isInsidePagesFolder ? '../components/navbar.html' : 'components/navbar.html';
-    const footerPath = isInsidePagesFolder ? '../components/footer.html' : 'components/footer.html';
+    const path = window.location.pathname;
+    const isChallengePage = path.includes('/pages/challenges/');
+    const isInsidePagesFolder = path.includes('/pages/') && !isChallengePage;
+    const componentPrefix = isChallengePage ? '../../' : (isInsidePagesFolder ? '../' : '');
+    const navbarPath = `${componentPrefix}components/navbar.html`;
+    const footerPath = `${componentPrefix}components/footer.html`;
 
     const navbarContainer = document.getElementById('navbar-container');
     const footerContainer = document.getElementById('footer-container');
@@ -287,6 +340,7 @@ async function loadComponents() {
       const navbarRes = await fetch(navbarPath);
       navbarContainer.innerHTML = await navbarRes.text();
       initRouteLinks();
+      initNavigation();
     }
 
     if (footerContainer) {
@@ -300,7 +354,7 @@ async function loadComponents() {
 
 // Registration Form Handler
 function initFormHandlers() {
-  const registrationForm = document.getElementById('registration-form');
+  const registrationForm = document.getElementById('registration-form') || document.getElementById('launch-pad-registration-form');
   if (registrationForm && !registrationForm.dataset.bound) {
     registrationForm.dataset.bound = '1';
     registrationForm.addEventListener('submit', handleRegistrationSubmit);
@@ -331,9 +385,11 @@ async function handleRegistrationSubmit(event) {
     age_group: getValue('reg-age-group'),
     location: getValue('reg-location'),
     experience_level: getValue('reg-experience'),
+    challenge_username: getValue('reg-challenge-username'),
+    skill_area: getValue('reg-skill-area'),
+    proficiency_level: getValue('reg-proficiency'),
     area_of_interest: getValue('reg-interest'),
     session_of_interest: getValue('reg-session'),
-    referral_source: getValue('reg-referral'),
     goal: getValue('reg-goal'),
     platform: getValue('reg-platform'),
     handle: getValue('reg-handle'),
@@ -348,6 +404,9 @@ async function handleRegistrationSubmit(event) {
     { key: 'phone_number', label: 'Phone number', elementId: 'reg-phone' },
     { key: 'email_address', label: 'Email', elementId: 'reg-email' },
     { key: 'location', label: 'Location', elementId: 'reg-location' },
+    { key: 'challenge_username', label: 'Launch Pad username', elementId: 'reg-challenge-username' },
+    { key: 'skill_area', label: 'Skill area', elementId: 'reg-skill-area' },
+    { key: 'proficiency_level', label: 'Proficiency level', elementId: 'reg-proficiency' },
     { key: 'area_of_interest', label: 'Event selection', elementId: 'reg-interest' },
     { key: 'session_of_interest', label: 'Session selection', elementId: 'reg-session' }
   ].filter(field => !!document.getElementById(field.elementId));
