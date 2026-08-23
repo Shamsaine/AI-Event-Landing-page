@@ -85,6 +85,7 @@ const defaultConfig = {
   contact_email: 'alteturiaofficial@gmail.com',
   registration_sheet_webhook_url: 'https://script.google.com/macros/s/AKfycbyUoFXumBmKYrgKrWKG721jcLFKqjw2QLjkNQRrC80erbSjndGEN427C8sqZAAoEbjD/exec',
   contact_sheet_webhook_url: 'https://script.google.com/macros/s/AKfycbyUoFXumBmKYrgKrWKG721jcLFKqjw2QLjkNQRrC80erbSjndGEN427C8sqZAAoEbjD/exec',
+  leaderboard_sheet_webhook_url: 'https://script.google.com/macros/s/AKfycbxmOVrxTzvqzJMwBhEmYlKLGpZ9GIUeDJgstRe9i6ikSZgJuIObtLXfkQcJgibrQVRzQA/exec',
   whatsapp_group_url: 'https://chat.whatsapp.com/LrzmQH68G150NgK3vV0HPy?mode=gi_t',
   logo_image_url: 'https://drive.google.com/file/d/1XSe6_1MyGamTZiMGA94nvjWiTXkWVXKb/view?usp=sharing',
   logo_fallback_local: '',
@@ -237,6 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initFormHandlers();
   initLaunchPadRegistration();
+  initLaunchPadLeaderboard();
   initScrollAnimations();
   initLucide();
   loadComponents();
@@ -321,6 +323,61 @@ function initLaunchPadRegistration() {
   platform?.addEventListener('change', syncPlatform);
   syncTrack();
   syncPlatform();
+}
+
+function initLaunchPadLeaderboard() {
+  const leaderboard = document.getElementById('launch-pad-leaderboard');
+  if (!leaderboard) return;
+
+  const endpoint = (leaderboard.dataset.leaderboardWebhook || defaultConfig.leaderboard_sheet_webhook_url || '').trim();
+  const tabs = [...leaderboard.querySelectorAll('[data-leaderboard-view]')];
+  const content = leaderboard.querySelector('[data-leaderboard-content]');
+  const labels = { general: 'General', learning: 'Learning Sprint', builder: 'Builder Sprint' };
+  const escapeHtml = value => String(value ?? '—').replace(/[&<>'"]/g, character => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+  }[character]));
+
+  const renderMessage = (title, message) => {
+    content.innerHTML = `<div class="lp-empty"><strong>${title}</strong><p>${message}</p></div>`;
+  };
+  const renderRows = (view, rows) => {
+    if (!rows.length) {
+      renderMessage("The journey hasn't started yet.", `No ${labels[view].toLowerCase()} leaderboard entries are available yet.`);
+      return;
+    }
+    const columns = Object.keys(rows[0]);
+    const title = columns.map(column => `<th scope="col">${escapeHtml(column)}</th>`).join('');
+    const body = rows.map(row => `<tr>${columns.map(column => `<td>${escapeHtml(row[column])}</td>`).join('')}</tr>`).join('');
+    content.innerHTML = `<div class="lp-leaderboard-table-wrap"><table class="lp-leaderboard-table"><thead><tr>${title}</tr></thead><tbody>${body}</tbody></table></div>`;
+  };
+  const requestData = view => new Promise((resolve, reject) => {
+    const callback = `alteturiaLeaderboard_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    const script = document.createElement('script');
+    const cleanup = () => { delete window[callback]; script.remove(); };
+    const timer = window.setTimeout(() => { cleanup(); reject(new Error('Timed out')); }, 10000);
+    window[callback] = data => { window.clearTimeout(timer); cleanup(); resolve(data); };
+    script.onerror = () => { window.clearTimeout(timer); cleanup(); reject(new Error('Unable to load')); };
+    script.src = `${endpoint}${endpoint.includes('?') ? '&' : '?'}action=leaderboard&view=${encodeURIComponent(view)}&callback=${callback}`;
+    document.head.appendChild(script);
+  });
+  const loadView = async view => {
+    tabs.forEach(tab => tab.classList.toggle('is-active', tab.dataset.leaderboardView === view));
+    if (!endpoint) {
+      renderMessage('Leaderboard connection pending.', 'Add your deployed Apps Script web-app URL to data-leaderboard-webhook on this section to display live rankings.');
+      return;
+    }
+    renderMessage('Loading the work…', `Getting the ${labels[view].toLowerCase()} leaderboard.`);
+    try {
+      const response = await requestData(view);
+      if (!response || response.ok === false) throw new Error(response?.error || 'Invalid response');
+      renderRows(view, response.rows || []);
+    } catch (error) {
+      renderMessage('Leaderboard unavailable.', 'Please try again shortly.');
+      console.error('Leaderboard error:', error);
+    }
+  };
+  tabs.forEach(tab => tab.addEventListener('click', () => loadView(tab.dataset.leaderboardView)));
+  loadView('general');
 }
 
 // Component Loading (consolidated)

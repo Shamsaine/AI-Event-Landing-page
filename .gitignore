@@ -3,3 +3,5 @@ TODO.md
 .DS_Store
 .*~
 *.log
+./google-apps-script
+Code.gs
