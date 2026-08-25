@@ -20,3 +20,5 @@ Alteturia landing site organized for scalable multi-page growth.
 - The canonical event page is `pages/events.html`.
 - Shared components are loaded dynamically so the layout stays consistent as the site grows.
 - Challenges are organized as a subdirectory so future challenge pages can be added alongside Launch Pad without changing existing routes.
+
+i need to update this more

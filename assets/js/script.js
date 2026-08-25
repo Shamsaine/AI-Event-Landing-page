@@ -88,7 +88,7 @@ const defaultConfig = {
   leaderboard_sheet_webhook_url: 'https://script.google.com/macros/s/AKfycbxmOVrxTzvqzJMwBhEmYlKLGpZ9GIUeDJgstRe9i6ikSZgJuIObtLXfkQcJgibrQVRzQA/exec',
   whatsapp_group_url: 'https://chat.whatsapp.com/LrzmQH68G150NgK3vV0HPy?mode=gi_t',
   logo_image_url: 'https://drive.google.com/file/d/1XSe6_1MyGamTZiMGA94nvjWiTXkWVXKb/view?usp=sharing',
-  logo_fallback_local: '',
+  logo_fallback_local: 'logo-preview/logo.png',
   background_color: '#030816',
   accent_color: '#6ED8FF',
   text_color: '#ffffff',
@@ -101,6 +101,13 @@ const defaultConfig = {
 // Apply Config
 function applyConfig(config) {
   const c = key => config[key] || defaultConfig[key];
+  const path = window.location.pathname;
+  const assetPrefix = path.includes('/pages/challenges/') ? '../../' : (path.includes('/pages/') ? '../' : '');
+  const resolveLocalAsset = url => {
+    const trimmed = String(url || '').trim();
+    if (!trimmed || /^https?:\/\//i.test(trimmed) || trimmed.startsWith('/')) return trimmed;
+    return `${assetPrefix}${trimmed}`;
+  };
 
   const getDriveFileId = (url) => {
     if (!url) return '';
@@ -125,7 +132,7 @@ function applyConfig(config) {
     };
 
     addCandidate(primaryUrl);
-    addCandidate(backupUrl);
+    addCandidate(resolveLocalAsset(backupUrl));
 
     return [...new Set(candidates)];
   };
@@ -268,7 +275,6 @@ function initRouteLinks() {
     events: isChallengePage ? '../events.html' : (isInsidePagesFolder ? 'events.html' : 'pages/events.html'),
     futureBuilder: isChallengePage ? '../future-builder-series.html' : (isInsidePagesFolder ? 'future-builder-series.html' : 'pages/future-builder-series.html'),
     challenges: isChallengePage ? 'index.html' : (isInsidePagesFolder ? 'challenges/index.html' : 'pages/challenges/index.html'),
-    registerBuilderSprint: 'https://chat.whatsapp.com/I25lCfSnBwRIOGW9hdFDrK',
     registerTechnicalSession: 'https://chat.whatsapp.com/LrzmQH68G150NgK3vV0HPy?mode=gi_t'
   };
 
